@@ -1,0 +1,154 @@
+{
+ "autoname": "field:party_name",
+ "creation": "2021-01-12 16:10:01.803652",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "party_name",
+  "lft",
+  "rgt",
+  "is_group",
+  "old_parent",
+  "parent_assignment_transaction_party",
+  "address_and_contact_section",
+  "address_html",
+  "column_break_9",
+  "contact_html",
+  "primary_address_and_contact_detail_section",
+  "primary_contact",
+  "mobile_no",
+  "email_id",
+  "column_break_15",
+  "primary_address",
+  "primary_addres"
+ ],
+ "fields": [
+  {
+   "fieldname": "party_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Party Name",
+   "reqd": 1,
+   "unique": 1
+  },
+  {
+   "fieldname": "lft",
+   "fieldtype": "Int",
+   "hidden": 1,
+   "label": "Left",
+   "no_copy": 1,
+   "read_only": 1
+  },
+  {
+   "fieldname": "rgt",
+   "fieldtype": "Int",
+   "hidden": 1,
+   "label": "Right",
+   "no_copy": 1,
+   "read_only": 1
+  },
+  {
+   "default": "0",
+   "fieldname": "is_group",
+   "fieldtype": "Check",
+   "label": "Is Group"
+  },
+  {
+   "fieldname": "old_parent",
+   "fieldtype": "Link",
+   "hidden": 1,
+   "label": "Old Parent",
+   "options": "Assignment Transaction Party"
+  },
+  {
+   "fieldname": "parent_assignment_transaction_party",
+   "fieldtype": "Link",
+   "label": "Parent Assignment Transaction Party",
+   "options": "Assignment Transaction Party"
+  },
+  {
+   "fieldname": "contact_html",
+   "fieldtype": "HTML",
+   "label": "Contact HTML",
+   "read_only": 1
+  },
+  {
+   "fieldname": "address_html",
+   "fieldtype": "HTML",
+   "label": "Address HTML",
+   "read_only": 1
+  },
+  {
+   "fieldname": "address_and_contact_section",
+   "fieldtype": "Section Break",
+   "label": "Address and Contact"
+  },
+  {
+   "fieldname": "column_break_9",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "primary_address_and_contact_detail_section",
+   "fieldtype": "Section Break",
+   "label": "Primary Address and Contact Detail"
+  },
+  {
+   "fieldname": "primary_contact",
+   "fieldtype": "Link",
+   "label": "Primary Contact",
+   "options": "Contact"
+  },
+  {
+   "fieldname": "mobile_no",
+   "fieldtype": "Read Only",
+   "label": "Mobile No"
+  },
+  {
+   "fieldname": "email_id",
+   "fieldtype": "Data",
+   "label": "Email Id"
+  },
+  {
+   "fieldname": "column_break_15",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "primary_address",
+   "fieldtype": "Link",
+   "label": "Primary Address",
+   "options": "Address"
+  },
+  {
+   "fieldname": "primary_addres",
+   "fieldtype": "Text",
+   "label": "Primary Addres",
+   "read_only": 1
+  }
+ ],
+ "is_tree": 1,
+ "modified": "2021-01-12 16:30:24.427336",
+ "modified_by": "Administrator",
+ "module": "Administrative Communication",
+ "name": "Assignment Transaction Party",
+ "nsm_parent_field": "parent_assignment_transaction_party",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "quick_entry": 1,
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "track_changes": 1
+}

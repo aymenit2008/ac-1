@@ -1,0 +1,297 @@
+{
+ "autoname": "naming_series:",
+ "creation": "2020-12-30 00:35:57.179072",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "naming_series",
+  "administrative_transaction",
+  "administrative_transaction_display",
+  "column_break_5",
+  "assignment_transaction",
+  "assignment_transaction_display",
+  "assignment_transaction_details",
+  "assignment_transaction_action",
+  "assignment_description",
+  "column_break_8",
+  "status",
+  "assignment_description_result",
+  "assigned_to_section",
+  "assigned_by_department",
+  "assigned_by_employee",
+  "assigned_by_user",
+  "is_urgent",
+  "column_break_18",
+  "assigned_to_type",
+  "assigned_to_department",
+  "assigned_to_employee",
+  "assigned_to_user",
+  "assigned_by_section",
+  "posting_date",
+  "exp_closing_date",
+  "column_break_24",
+  "receive_date",
+  "closing_date",
+  "assignment_transaction_cc_section",
+  "assignment_transaction_cc",
+  "transporter_section",
+  "transporter",
+  "is_archived",
+  "company",
+  "amended_from"
+ ],
+ "fields": [
+  {
+   "fieldname": "naming_series",
+   "fieldtype": "Select",
+   "hidden": 1,
+   "label": "Naming Series",
+   "options": "AST-.YYYY.-"
+  },
+  {
+   "fieldname": "administrative_transaction",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "\u0627\u0644\u0645\u0639\u0627\u0645\u0644\u0629",
+   "options": "Administrative Transaction",
+   "read_only": 1,
+   "reqd": 1
+  },
+  {
+   "fieldname": "assignment_transaction",
+   "fieldtype": "Link",
+   "label": "\u0627\u0644\u0627\u062d\u0627\u0644\u0629 \u0627\u0644\u0633\u0627\u0628\u0642\u0629",
+   "options": "Assignment Transaction",
+   "read_only": 1
+  },
+  {
+   "collapsible": 1,
+   "fieldname": "assignment_transaction_details",
+   "fieldtype": "Section Break",
+   "label": "\u062a\u0641\u0627\u0635\u064a\u0644 \u0627\u0644\u0627\u062d\u0627\u0644\u0629"
+  },
+  {
+   "fieldname": "assignment_transaction_action",
+   "fieldtype": "Link",
+   "label": "\u0627\u0644\u0627\u062c\u0631\u0627\u0621",
+   "options": "Assignment Transaction Action",
+   "reqd": 1
+  },
+  {
+   "fieldname": "assignment_description",
+   "fieldtype": "Text Editor",
+   "label": "\u0627\u0644\u0634\u0631\u062d"
+  },
+  {
+   "fieldname": "column_break_8",
+   "fieldtype": "Column Break"
+  },
+  {
+   "allow_on_submit": 1,
+   "fieldname": "assignment_description_result",
+   "fieldtype": "Text Editor",
+   "label": "\u0645\u062d\u062a\u0648\u0649 \u0627\u0644\u0631\u062f \u0639\u0644\u0649 \u0627\u0644\u0627\u062d\u0627\u0644\u0629"
+  },
+  {
+   "collapsible": 1,
+   "fieldname": "assigned_to_section",
+   "fieldtype": "Section Break",
+   "label": "\u0645\u062d\u0627\u0644\u0629 \u0645\u0646 / \u0627\u0644\u0649"
+  },
+  {
+   "fieldname": "assigned_to_type",
+   "fieldtype": "Select",
+   "label": "\u0627\u062d\u0627\u0644\u0629 \u0627\u0644\u0649",
+   "options": "\nEmployee\nDepartment",
+   "reqd": 1
+  },
+  {
+   "fieldname": "assigned_to_employee",
+   "fieldtype": "Link",
+   "label": "\u0627\u0644\u0645\u0648\u0638\u0641 \u0627\u0644\u0645\u062d\u0627\u0644 \u0627\u0644\u064a\u0647",
+   "options": "Employee",
+   "reqd": 1
+  },
+  {
+   "fieldname": "assigned_to_department",
+   "fieldtype": "Link",
+   "label": "\u0627\u0644\u062c\u0647\u0629 \u0627\u0644\u0645\u062d\u0627\u0644 \u0627\u0644\u064a\u0647\u0627",
+   "options": "Department",
+   "reqd": 1
+  },
+  {
+   "fieldname": "closing_date",
+   "fieldtype": "Datetime",
+   "label": "\u062a\u0627\u0631\u064a\u062e \u0627\u063a\u0644\u0627\u0642 \u0627\u0644\u0627\u062d\u0627\u0644\u0629",
+   "read_only": 1
+  },
+  {
+   "allow_on_submit": 1,
+   "fieldname": "receive_date",
+   "fieldtype": "Datetime",
+   "label": "\u062a\u0627\u0631\u064a\u062e \u0627\u0633\u062a\u0644\u0627\u0645 \u0627\u0644\u0627\u062d\u0627\u0644\u0629",
+   "read_only": 1
+  },
+  {
+   "collapsible": 1,
+   "fieldname": "assigned_by_section",
+   "fieldtype": "Section Break",
+   "label": "\u0627\u0644\u0628\u064a\u0627\u0646\u0627\u062a \u0627\u0644\u0632\u0645\u0646\u064a\u0629 \u0644\u0644\u0627\u062d\u0627\u0644\u0629"
+  },
+  {
+   "fieldname": "assigned_by_employee",
+   "fieldtype": "Link",
+   "label": "\u0627\u0644\u0645\u0648\u0638\u0641 \u0627\u0644\u0645\u062d\u064a\u0644",
+   "options": "Employee",
+   "permlevel": 1
+  },
+  {
+   "fetch_from": "assigned_by_employee.department",
+   "fieldname": "assigned_by_department",
+   "fieldtype": "Link",
+   "label": "\u0627\u0644\u062c\u0647\u0629 \u0627\u0644\u0645\u062d\u064a\u0644\u0629",
+   "options": "Department",
+   "permlevel": 1
+  },
+  {
+   "default": "0",
+   "fieldname": "is_urgent",
+   "fieldtype": "Check",
+   "label": "\u0627\u062d\u0627\u0644\u0629 \u0639\u0627\u062c\u0644\u0629"
+  },
+  {
+   "fieldname": "posting_date",
+   "fieldtype": "Datetime",
+   "label": "\u062a\u0627\u0631\u064a\u062e \u0627\u0644\u0627\u062d\u0627\u0644\u0629",
+   "read_only": 1
+  },
+  {
+   "collapsible": 1,
+   "fieldname": "transporter_section",
+   "fieldtype": "Section Break",
+   "label": "\u0645\u0646\u0627\u0648\u0644\u0629 \u0627\u0644\u0645\u0631\u0627\u0633\u0644"
+  },
+  {
+   "fieldname": "transporter",
+   "fieldtype": "Link",
+   "label": "\u0627\u0644\u0645\u0631\u0627\u0633\u0644",
+   "options": "User"
+  },
+  {
+   "collapsible": 1,
+   "fieldname": "assignment_transaction_cc_section",
+   "fieldtype": "Section Break",
+   "label": "\u0627\u0644\u062c\u0647\u0627\u062a \u0627\u0644\u0645\u062d\u0627\u0644 \u0627\u0644\u064a\u0647\u0627 \u0643\u0635\u0648\u0631\u0629"
+  },
+  {
+   "fieldname": "assignment_transaction_cc",
+   "fieldtype": "Table",
+   "label": "\u0627\u0644\u062c\u0647\u0627\u062a \u0627\u0644\u0645\u062d\u0627\u0644 \u0627\u0644\u064a\u0647\u0627 \u0643\u0635\u0648\u0631\u0629",
+   "options": "Assignment Transaction CC"
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Assignment Transaction",
+   "print_hide": 1,
+   "read_only": 1
+  },
+  {
+   "fieldname": "administrative_transaction_display",
+   "fieldtype": "Button",
+   "label": "\u0639\u0631\u0636 \u0627\u0644\u062a\u0641\u0627\u0635\u064a\u0644"
+  },
+  {
+   "fieldname": "column_break_5",
+   "fieldtype": "Column Break",
+   "read_only": 1
+  },
+  {
+   "fieldname": "assignment_transaction_display",
+   "fieldtype": "Button",
+   "label": "\u0639\u0631\u0636 \u0627\u0644\u062a\u0641\u0627\u0635\u064a\u0644"
+  },
+  {
+   "fieldname": "column_break_18",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "column_break_24",
+   "fieldtype": "Column Break"
+  },
+  {
+   "allow_on_submit": 1,
+   "fieldname": "exp_closing_date",
+   "fieldtype": "Datetime",
+   "label": "\u062a\u0627\u0631\u064a\u062e \u0627\u0644\u0627\u063a\u0644\u0627\u0642 \u0627\u0644\u0645\u062a\u0648\u0642\u0639"
+  },
+  {
+   "fetch_from": "assigned_by_employee.user_id",
+   "fieldname": "assigned_by_user",
+   "fieldtype": "Link",
+   "label": "\u0627\u064a\u0645\u064a\u0644 \u0627\u0644\u0645\u0648\u0638\u0641 \u0627\u0644\u0645\u062d\u064a\u0644",
+   "options": "User",
+   "permlevel": 1,
+   "read_only": 1
+  },
+  {
+   "fetch_from": "assigned_to_employee.user_id",
+   "fieldname": "assigned_to_user",
+   "fieldtype": "Link",
+   "label": "\u0627\u064a\u0645\u064a\u0644 \u0627\u0644\u0645\u0648\u0638\u0641 \u0627\u0644\u0645\u062d\u0627\u0644 \u0627\u0644\u064a\u0647",
+   "options": "User",
+   "read_only": 1
+  },
+  {
+   "allow_on_submit": 1,
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "\u062d\u0627\u0644\u0629 \u0627\u0644\u0627\u062d\u0627\u0644\u0629",
+   "options": "\nDraft\nOpen\nReceived\nCompleted\nCancelled\nHold\nAssigned\nReplied",
+   "read_only": 1
+  },
+  {
+   "default": "0",
+   "fieldname": "is_archived",
+   "fieldtype": "Check",
+   "hidden": 1,
+   "label": "\u0645\u0624\u0631\u0634\u0641\u0629",
+   "read_only": 1
+  },
+  {
+   "fieldname": "company",
+   "fieldtype": "Link",
+   "label": "Company",
+   "options": "Company",
+   "reqd": 1
+  }
+ ],
+ "is_submittable": 1,
+ "modified": "2021-01-12 16:56:04.902514",
+ "modified_by": "Administrator",
+ "module": "Administrative Communication",
+ "name": "Assignment Transaction",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "track_changes": 1
+}
