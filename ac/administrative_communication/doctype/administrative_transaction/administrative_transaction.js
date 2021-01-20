@@ -2,8 +2,29 @@
 // For license information, please see license.txt
 frappe.provide("ac.administrative_communication");
 frappe.ui.form.on('Administrative Transaction', {
-
+	setup: function(frm) {
+		frm.set_query("inbox_party_type", function() {
+			
+			return{
+				filters: {
+					"name": ["in", Object.keys(frappe.boot.party_account_types)],
+				}
+			}
+		});
+		frm.set_query("inbox_contact", function() {
+			if (frm.doc.inbox_party) {
+				return {
+					query: 'frappe.contacts.doctype.contact.contact.contact_query',
+					filters: {
+						link_doctype: frm.doc.inbox_party_type,
+						link_name: frm.doc.inbox_party
+					}
+				};
+			}
+		});
+	},
 	refresh: function (frm) {
+		frm.set_df_property('ac_attachments_section',  'hidden',  frm.doc.__islocal ? 1 : 0);
 		console.log('aseel')
 		if(frm.doc.docstatus==1){
 			frm.add_custom_button(
@@ -55,5 +76,66 @@ frappe.ui.form.on('Administrative Transaction', {
 				frm.toolbar.refresh();
 			}
 		})
+	},
+	inbox_party_type: function(frm){
+		frm.set_value('inbox_party','')
+	},
+	inbox_party: function(frm){
+		frm.set_value('inbox_contact','')
+		frm.set_value('inbox_party_name','')
+		if(frm.doc.inbox_party){			
+			if(frm.doc.inbox_party_type=='Administrative Communication Party'){
+				frappe.db.get_value(frm.doc.inbox_party_type, {"name": frm.doc.inbox_party}, ["full_name"], function(value) {
+					if(value.full_name){						
+						frm.set_value('inbox_party_name',value.full_name)
+					}
+				})
+			}else if(frm.doc.inbox_party_type=='Customer'){
+				frappe.db.get_value(frm.doc.inbox_party_type, {"name": frm.doc.inbox_party}, ["customer_name"], function(value) {
+					if(value.customer_name){						
+						frm.set_value('inbox_party_name',value.customer_name)
+					}
+				})
+			}else if(frm.doc.inbox_party_type=='Supplier'){
+				frappe.db.get_value(frm.doc.inbox_party_type, {"name": frm.doc.inbox_party}, ["supplier_name"], function(value) {
+					if(value.supplier_name){						
+						frm.set_value('inbox_party_name',value.supplier_name)
+					}
+				})
+			}else if(frm.doc.inbox_party_type=='Employee'){
+				frappe.db.get_value(frm.doc.inbox_party_type, {"name": frm.doc.inbox_party}, ["employee_name"], function(value) {
+					if(value.employee_name){						
+						frm.set_value('inbox_party_name',value.employee_name)
+					}
+				})
+			}else{
+				frm.set_value('inbox_party_name','')
+			}
+			
+		}
+	},
+	inbox_contact: function(frm){
+		frm.set_value('inbox_contact_mobile','')
+		frm.set_value('inbox_contact_email','')
+		if (frm.doc.inbox_contact){
+
+		}
+		frappe.db.get_value("Contact", {"name": frm.doc.inbox_contact}, ["email_id","mobile_no","first_name","last_name"], function(value) {
+			var full_name=''
+			if(value.email_id){
+				frm.set_value('inbox_contact_email',value.email_id)
+			}
+			if(value.mobile_no){
+				frm.set_value('inbox_contact_mobile',value.mobile_no)
+			}
+			if(value.first_name){
+				full_name=value.first_name+' '
+			}
+			if(value.last_name){
+				full_name+=value.last_name
+			}
+			frm.set_value('inbox_contact_name',full_name)
+
+		});
 	}
 });

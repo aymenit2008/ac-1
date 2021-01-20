@@ -1,20 +1,21 @@
 {
  "autoname": "field:party_name",
- "creation": "2021-01-12 16:10:01.803652",
+ "creation": "2021-01-19 20:59:41.223724",
  "doctype": "DocType",
  "editable_grid": 1,
  "engine": "InnoDB",
  "field_order": [
   "party_name",
+  "full_name",
   "lft",
   "rgt",
   "is_group",
   "old_parent",
-  "parent_assignment_transaction_party",
+  "parent_administrative_communication_party",
   "address_and_contact_section",
-  "address_html",
-  "column_break_9",
   "contact_html",
+  "column_break_9",
+  "address_html",
   "primary_address_and_contact_detail_section",
   "primary_contact",
   "mobile_no",
@@ -59,13 +60,19 @@
    "fieldtype": "Link",
    "hidden": 1,
    "label": "Old Parent",
-   "options": "Assignment Transaction Party"
+   "options": "Administrative Communication Party",
+   "read_only": 1
   },
   {
-   "fieldname": "parent_assignment_transaction_party",
+   "fieldname": "parent_administrative_communication_party",
    "fieldtype": "Link",
-   "label": "Parent Assignment Transaction Party",
-   "options": "Assignment Transaction Party"
+   "label": "Parent Administrative Communication Party",
+   "options": "Administrative Communication Party"
+  },
+  {
+   "fieldname": "address_and_contact_section",
+   "fieldtype": "Section Break",
+   "label": "Address and Contact"
   },
   {
    "fieldname": "contact_html",
@@ -74,19 +81,14 @@
    "read_only": 1
   },
   {
+   "fieldname": "column_break_9",
+   "fieldtype": "Column Break"
+  },
+  {
    "fieldname": "address_html",
    "fieldtype": "HTML",
    "label": "Address HTML",
    "read_only": 1
-  },
-  {
-   "fieldname": "address_and_contact_section",
-   "fieldtype": "Section Break",
-   "label": "Address and Contact"
-  },
-  {
-   "fieldname": "column_break_9",
-   "fieldtype": "Column Break"
   },
   {
    "fieldname": "primary_address_and_contact_detail_section",
@@ -102,12 +104,14 @@
   {
    "fieldname": "mobile_no",
    "fieldtype": "Read Only",
-   "label": "Mobile No"
+   "label": "Mobile No",
+   "read_only": 1
   },
   {
    "fieldname": "email_id",
-   "fieldtype": "Data",
-   "label": "Email Id"
+   "fieldtype": "Date",
+   "label": "Email Id",
+   "read_only": 1
   },
   {
    "fieldname": "column_break_15",
@@ -124,14 +128,19 @@
    "fieldtype": "Text",
    "label": "Primary Addres",
    "read_only": 1
+  },
+  {
+   "fieldname": "full_name",
+   "fieldtype": "Data",
+   "label": "Full Name"
   }
  ],
  "is_tree": 1,
- "modified": "2021-01-12 16:30:24.427336",
+ "modified": "2021-01-19 21:26:11.056119",
  "modified_by": "Administrator",
  "module": "Administrative Communication",
- "name": "Assignment Transaction Party",
- "nsm_parent_field": "parent_assignment_transaction_party",
+ "name": "Administrative Communication Party",
+ "nsm_parent_field": "parent_administrative_communication_party",
  "owner": "Administrator",
  "permissions": [
   {
@@ -150,5 +159,6 @@
  "quick_entry": 1,
  "sort_field": "modified",
  "sort_order": "DESC",
+ "title_field": "party_name",
  "track_changes": 1
 }

@@ -9,40 +9,80 @@ from frappe.utils import flt, comma_or, nowdate, getdate, add_days, now
 from frappe.model.document import Document
 
 class AssignmentTransaction(Document):
-	def validate(self):
-		self.set_status()
+	#def on_update(self):
+	#	frappe.msgprint('on_update')
 
-	def set_status(self,status=None):
+	#def before_save(self):
+	#	frappe.msgprint('before_save')
+
+	#def after_save(self):
+	#	frappe.msgprint('after_save')
+
+	def on_update_after_submit(self):
+		if not self.assignment_transaction:		
+			aa=frappe.db.get_list('Assignment Transaction',filters={'administrative_transaction': self.administrative_transaction,'assignment_transaction':("=", ""),'docstatus':1},fields=['status', 'name'])		
+			newstatus=''
+			for a in aa:				
+				if a.status=='Completed':
+					newstatus='Completed'
+				else:					
+					newstatus='Pending'
+				frappe.msgprint('{0} = {1}'.format(a.name,a.status))
+			if newstatus!='':
+				doc = frappe.get_doc("Administrative Transaction", self.administrative_transaction)
+				if doc.status!=newstatus:
+					doc.set_status(update=True,status=newstatus,update_modified=False)
+					doc.reload()
+
+	def validate(self):	
 		if self.is_new():
-			self.db_set('status','Draft')
-			self.db_set('posting_date', now())			
-			return
-		elif self.docstatus==1 and self.status=='Draft' :
-			self.db_set('status','Assigned')			
-			self.db_set('posting_date', now())		
-			return
-		frappe.msgprint('on_change_status')
-		##self.is_receipt=1		
+			self.status='Draft'
+			if not self.posting_date:
+				self.posting_date=now()
+			if not self.exp_closing_date:
+				self.exp_closing_date=add_days(now(), frappe.db.get_single_value("Administrative Communication Settings", "default_assignment_closing_expected_days"))
+
+
+	def set_reply(self,reply=None):	
+		if not reply:	
+			frappe.throw('Replay is Required')
+		if self.status=='Received':
+			if self.assignment_description_result==reply:
+				frappe.throw('Replay Must to be Not Same Last Replay')
+			else:
+				self.assignment_description_result=reply
+		else:
+			frappe.throw('Status Should to be Received First')
+		return True
+		
+			
+		
+	def set_status(self,status=None):	
 		if status:
 			if status=='Received':
-				self.set('receive_date',now())
+				self.receive_date=now()
+			elif status=='Replied':
+				self.reply_date=now()
 			elif status=='Completed':
-				self.set('closing_date',now())
-			self.set('status', status)
-			return
-		#self.save()
-		#self.reload()
-
-	def on_submit(self):
-		frappe.msgprint('on_submit')
-		if self.administrative_transaction:
-			frappe.msgprint('on_submit')
-			##frappe.get_doc("Administrative Transaction", self.administrative_transaction).validate()
+				self.closing_date=now()
+			self.status=status
+		self.save()
+		self.reload()
 
 	def before_submit(self):
-		self.set_status(status='Open')
-		if self.administrative_transaction:
-			frappe.get_doc("Administrative Transaction", self.administrative_transaction).set_status(update=True,status='Pending')
+		self.status='Open'
+		self.posting_date=now()
+		frappe.msgprint('before_submit')
+	
+	def on_submit(self):
+		frappe.get_doc("Administrative Transaction", self.administrative_transaction).set_status(update=True,status='Pending')
+		from frappe.share import add
+		if self.assigned_to_user:
+			add(self.doctype, self.name, self.assigned_to_user, 1, 1, 1, 0)
+		if self.assignment_transaction_cc:
+			for atc in self.assignment_transaction_cc:
+				if atc.employee_email:
+					add(self.doctype, self.name, atc.employee_email, 1, 0, 0, 0)
 			
 
 

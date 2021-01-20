@@ -18,7 +18,12 @@ def get_data():
 					"description":_("Assignment Transaction"),
 					"onboard": 1
 				},
-
+				{
+					"type": "doctype",
+					"name": "Decisions And Generalizations",
+					"description":_("Decisions And Generalizations"),
+					"onboard": 1
+				},								
 			]
 		},
 		{
@@ -30,6 +35,42 @@ def get_data():
 					"description":_("Administrative Communication Settings"),
 					"onboard": 1,
 				},
+{
+					"type": "doctype",
+					"name": "Administrative Communication Party",
+					"description":_("Administrative Communication Party"),
+					"onboard": 1
+				},
+
+{
+					"type": "doctype",
+					"name": "Administrative Transaction Source",
+					"description":_("Administrative Transaction Source"),
+					"onboard": 1
+				},
+
+{
+					"type": "doctype",
+					"name": "Administrative Transaction Type",
+					"description":_("Administrative Transaction Type"),
+					"onboard": 1
+				},
+
+{
+					"type": "doctype",
+					"name": "Administrative Transaction Category",
+					"description":_("Administrative Transaction Category"),
+					"onboard": 1
+				},
+
+{
+					"type": "doctype",
+					"name": "Assignment Transaction Action",
+					"description":_("Assignment Transaction Action"),
+					"onboard": 1
+				},
+
+
 
 			]
 		},

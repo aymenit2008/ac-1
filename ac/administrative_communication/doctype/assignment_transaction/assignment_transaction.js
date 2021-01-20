@@ -6,24 +6,41 @@ frappe.ui.form.on('Assignment Transaction', {
 		if (frm.doc.administrative_transaction) {
 			frappe.db.get_value("Administrative Transaction", { "name": frm.doc.administrative_transaction }, ["*"], function (value) {
 				msgprint("<ul style='direction:rtl'>"
-					+ "<li><b>" + value.source + "</b> source</li>"
-					+ "<li><b>" + value.type + "</b> type</li>"
-					+ "<li><b>" + value.subject + "</b> subject</li>"
-					+ "<li><b>" + value.category + "</b> category</li>"
-					+ "<li><b>" + value.priority + "</b> priority</li>"
-					+ "<li><b>" + value.orginal_type + "</b> orginal_type</li>"
-					+ "<li><b>" + value.secret_level + "</b> secret_level</li>"
-					+ "<li><b>" + value.content + "</b> content</li>"
+					+ "<li><b style='color:blue'>نوع المعاملة</b></br><h4>" + value.source + " </h4></li>"
+					+ "<li><b style='color:blue'>نوع الصادر</b> </br><h4>" + value.type + "<h4> </li>"
+					+ "<li><b style='color:blue'>موضوع المعاملة</b> </br><h4>" + value.subject + "<h4> </li>"
+					+ "<li><b style='color:blue'>تصنيف المعاملة</b> </br><h4>" + value.category + " <h4></li>"
+					+ "<li><b style='color:blue'>اولوية المعاملة</b> </br><h4>" + value.priority + "<h4> </li>"
+					+ "<li><b style='color:blue'>طبيعة اصل المعاملة</b> </br><h4>" + value.orginal_type + "<h4></li>"
+					+ "<li><b style='color:blue'>مستوى سرية المعاملة</b> </br><h4>" + value.secret_level + "<h4></li>"
+					+ "<li><b style='color:blue'>المحتوى</b> </br><h4>" + value.content + " </li>"
 
 					+ "</ul>", 'Administrative Transaction Info')
 			})
 		} else {
 			frappe.show_alert('There is no Administrative Transaction', 5);
 		}
-
 		//frappe.show_alert('Hi, do you have a new message', 5);
-
-
+	},
+	assignment_transaction_display: function (frm) {
+		if (frm.doc.assignment_transaction) {
+			frappe.db.get_value("Assignment Transaction", { "name": frm.doc.assignment_transaction }, ["*"], function (value) {
+				msgprint("<ul style='direction:rtl'>"
+					+ "<li><b style='color:blue'>الاجراء </b></br><h4>" + value.assignment_transaction_action + " </h4></li>"
+					+ "<li><b style='color:blue'>حالة الاحالة</b> </br><h4>" + value.status + "<h4> </li>"
+					+ "<li><b style='color:blue'>محتوى الرد على الاحالة</b> </br><h4>" + value.assignment_description + "<h4> </li>"
+					+ "<li><b style='color:blue'>الجهة المحيلة</b> </br><h4>" + value.assigned_by_department + " <h4></li>"
+					+ "<li><b style='color:blue'>الموضف المحيل</b> </br><h4>" + value.assigned_by_employee + "<h4> </li>"
+					+ "<li><b style='color:blue'>احالة عاجلة</b> </br><h4>" + value.is_urgent + "<h4></li>"
+					+ "<li><b style='color:blue'>الجهة المحال اليها</b> </br><h4>" + value.assigned_to_department + "<h4></li>"
+					+ "<li><b style='color:blue'>الموضف المحال اليه</b> </br><h4>" + value.assigned_to_employee + " </li>"
+					+ "<li><b style='color:blue'>المراسل</b> </br><h4>" + value.transporter + " </li>"
+					+ "</ul>", 'Assignment Transaction Info')
+			})
+		} else {
+			frappe.show_alert('There is no Assignment Transactions', 5);
+		}
+		//frappe.show_alert('Hi, do you have a new message', 5);
 	},
 	validate: function (frm) {
 		if (!frm.doc.assigned_by_employee) {
@@ -42,8 +59,7 @@ frappe.ui.form.on('Assignment Transaction', {
 			validated = false;
 		}
 	},
-	setup: function (frm) {
-		frm.trigger('display_property')
+	setup: function (frm) {		
 		if (!frm.doc.assigned_by_employee) {
 			frappe.db.get_value("Employee", { "user_id": frappe.session.user }, ["name", "department"], function (value) {
 				if (value.employee) {
@@ -70,16 +86,14 @@ frappe.ui.form.on('Assignment Transaction', {
 		}
 	},
 	assigned_to_type: function (frm) {
-		if (!frm.doc.assigned_to_type) {
-			frm.set_value('assigned_to_department', '')
+		frm.set_value('assigned_to_department', '')
 			frm.set_value('assigned_to_employee', '')
-			frm.set_value('assigned_to_user', '')
+			frm.set_value('assigned_to_user', '')		
+		if (!frm.doc.assigned_to_type) {
 			frm.set_df_property('assigned_to_department', 'hidden', 1);
 			frm.set_df_property('assigned_to_employee', 'hidden', 1);
 		}
 		else if (frm.doc.assigned_to_type == 'Department') {
-			frm.set_value('assigned_to_employee', '')
-			frm.set_value('assigned_to_user', '')
 			frm.set_df_property('assigned_to_department', 'reqd', 1);
 			frm.set_df_property('assigned_to_employee', 'reqd', 1);
 			frm.set_df_property('assigned_to_department', 'hidden', 0);
@@ -88,8 +102,7 @@ frappe.ui.form.on('Assignment Transaction', {
 			frm.set_df_property('assigned_to_employee', 'read_only', 1);
 			frm.set_df_property('assigned_to_employee', 'label', 'مسؤول الجهة');
 			frm.set_df_property('assigned_to_department', 'label', 'الجهة المحال اليها');
-		} else if (frm.doc.assigned_to_type == 'Employee') {
-			frm.set_value('assigned_to_department', '')
+		} else if (frm.doc.assigned_to_type == 'Employee') {				
 			frm.set_df_property('assigned_to_department', 'reqd', 0);
 			frm.set_df_property('assigned_to_employee', 'reqd', 1);
 			frm.set_df_property('assigned_to_employee', 'hidden', 0);
@@ -137,46 +150,67 @@ frappe.ui.form.on('Assignment Transaction', {
 		}
 	},
 	refresh: function (frm) {
+		frm.trigger('validate_assignment_description')
 		if (frm.doc.docstatus == 1) {
 			if (frm.doc.status == 'Open') {
 				frm.add_custom_button(
 					__('Received'),
 					function () {
 						console.log('is_receipt')
-						frm.events.set_status(frm,'Received');
+						frm.events.set_status(frm, 'Received');
 					},
 					__('Set Status')
 				);
 				cur_frm.page.set_inner_btn_group_as_primary(__('Set Status'));
 			} else if (frm.doc.status == 'Received') {
+				if(frm.doc.assignment_description_result){
+					frm.add_custom_button(
+						__('Replied'),
+						function () {
+							console.log('is_Replied')
+							frm.events.set_status(frm, 'Replied');
+						},
+						__('Set Status')
+					);
+					cur_frm.page.set_inner_btn_group_as_primary(__('Set Status'));
+				}				
+			}else if (frm.doc.status == 'Replied') {
 				frm.add_custom_button(
 					__('Completed'),
 					function () {
 						console.log('is_receipt')
-						frm.events.set_status(frm,'Completed');
+						frm.events.set_status(frm, 'Completed');
 					},
 					__('Set Status')
 				);
 				cur_frm.page.set_inner_btn_group_as_primary(__('Set Status'));
-			} else if (frm.doc.status == 'Completed') {
-				frm.add_custom_button(
-					__('Cancelled'),
-					function () {
-						console.log('is_receipt')
-						frm.events.set_status(frm,'Cancelled');
-					},
-					__('Set Status')
-				);				
 			}
 		}
-		frm.add_custom_button(
-			__('Assignment Transaction'),
-			function () {
-				console.log('ahmed')
-				frm.events.make_assignment_transaction(frm);
-			},
-			__('Make')
-		);
+				
+		if (frm.doc.status == 'Received') {
+			frm.add_custom_button(
+				__('Reply'),
+				function () {
+					console.log('ahmed')
+					frm.events.reply_dialog(frm);
+				},
+				__('Make')
+			);
+			if(!frm.doc.assignment_description_result){
+				cur_frm.page.set_inner_btn_group_as_primary(__('Make'));
+			}
+			
+		}	
+		if (frm.doc.status != 'Open' && frm.doc.status != 'Draft' && frm.doc.status != 'Cancelled') {
+			frm.add_custom_button(
+				__('Assignment Transaction'),
+				function () {
+					console.log('ahmed')
+					frm.events.make_assignment_transaction(frm);
+				},
+				__('Make')
+			);
+		}	
 	},
 	make_assignment_transaction: function (frm) {
 		return frappe.call({
@@ -191,28 +225,71 @@ frappe.ui.form.on('Assignment Transaction', {
 			}
 		});
 	},
-	set_status: function (frm,status) {
+	set_status: function (frm, status) {
 		return frappe.call({
 			doc: frm.doc,
 			method: 'set_status',
-			args:{status:status},
+			args: { status: status },
 			callback: function (r) {
-				frm.save();
+				console.log(r)
+				if(frm.doc.docstatus==0){
+					//frm.save();
+				}else{
+					console.log(r)
+					//frm.save('Update');
+				}				
 				frm.refresh();
-				frm.toolbar.refresh();
+				//frm.toolbar.refresh();
 			}
 		})
 	},
-	display_property: function (frm) {
-		if (frm.doc.administrative_transaction) {
-			frm.set_df_property('administrative_transaction_display', 'hidden', 0);
-		} else {
-			frm.set_df_property('administrative_transaction_display', 'hidden', 1);
-		}
-		if (frm.doc.assignment_transaction) {
-			frm.set_df_property('assignment_transaction_display', 'hidden', 0);
-		} else {
-			frm.set_df_property('assignment_transaction_display', 'hidden', 1);
+	validate_assignment_description: function (frm) {
+		if (frm.doc.__islocal) {
+			frm.set_df_property('assignment_description_result', 'hidden', 1);
+			frm.set_df_property('assignment_description_result', 'read_only', 1);
+		} else {			
+			if (frm.doc.status == 'Received') {
+				frm.set_df_property('assignment_description_result', 'hidden', 0);
+			} else {				
+				if (frm.doc.status == 'Open') {
+					frm.trigger('receive_dialog')
+				}				
+			}
 		}
 	},
+	receive_dialog: function (frm) {
+		frappe.prompt({
+			label: __('Please Confirm Receive'),
+			fieldtype: 'Heading'
+		},
+			function () {
+				frm.events.set_status(frm, 'Received');
+			}
+			, __('Confirm Message'), __('Confirm'));
+
+	},
+	reply_dialog: function (frm) {
+		frappe.prompt({
+			label: __(''),
+			fieldtype: 'TextEditor',
+			fieldname: 'reply',
+			'reqd':1
+		},
+		(values) => {
+			console.log(values.reply);
+			return frappe.call({
+				doc: frm.doc,
+				method: 'set_reply',
+				args: { reply: values.reply },
+				callback: function (r) {
+					console.log(r);
+					frm.save('Update');						
+					frm.refresh();
+					frm.toolbar.refresh();
+				}
+			})
+		}
+			, __('Replay Content'), __('Replay'));
+
+	}
 });

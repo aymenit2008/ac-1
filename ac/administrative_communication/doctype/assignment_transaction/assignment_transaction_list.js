@@ -9,6 +9,7 @@ frappe.listview_settings['Assignment Transaction'] = {
 			"Open": "darkgrey",
 			"Assigned": "orange",
 			"Received": "blue",
+			"Replied": "black",
 			"Completed": "green",
 			"Cancelled": "red"
 		};

@@ -18,16 +18,18 @@
   "content_section",
   "content",
   "inbox_details_section",
-  "inbox_no",
-  "inbox_contact",
-  "inbox_contact_display",
-  "inbox_contact_mobile",
-  "inbox_contact_email",
-  "column_break_18",
+  "inbox_party_type",
   "inbox_party",
+  "inbox_party_name",
+  "inbox_no",
   "inbox_type",
   "inbox_date",
   "inbox_delivery_date",
+  "column_break_18",
+  "inbox_contact",
+  "inbox_contact_name",
+  "inbox_contact_email",
+  "inbox_contact_mobile",
   "ac_parties_section",
   "ac_parties_",
   "ac_attachments_section",
@@ -66,7 +68,7 @@
    "fieldtype": "Link",
    "in_list_view": 1,
    "in_preview": 1,
-   "label": "\u0646\u0648\u0639 \u0627\u0644\u0635\u0627\u062f\u0631",
+   "label": "\u0646\u0648\u0639 \u0627\u0644\u0645\u0639\u0627\u0645\u0644\u0629",
    "options": "Administrative Transaction Source",
    "reqd": 1
   },
@@ -75,7 +77,7 @@
    "fieldtype": "Link",
    "in_list_view": 1,
    "in_preview": 1,
-   "label": "\u0646\u0648\u0639 \u0627\u0644\u0645\u0639\u0627\u0645\u0644\u0629",
+   "label": "\u0646\u0648\u0639 \u0627\u0644\u0635\u0627\u062f\u0631",
    "options": "Administrative Transaction Type",
    "reqd": 1
   },
@@ -142,36 +144,34 @@
    "label": "\u0631\u0642\u0645 \u0627\u0644\u0648\u0627\u0631\u062f"
   },
   {
+   "depends_on": "inbox_party",
    "fieldname": "inbox_contact",
    "fieldtype": "Link",
-   "label": "\u0645\u0631\u0627\u0633\u0644 \u0627\u0644\u0648\u0627\u0631\u062f",
+   "label": "\u062c\u0647\u0629 \u0627\u062a\u0635\u0627\u0644 \u0627\u0644\u0648\u0627\u0631\u062f",
    "options": "Contact"
   },
   {
-   "fieldname": "inbox_contact_display",
-   "fieldtype": "Small Text",
-   "label": "\u062a\u0641\u0627\u0635\u064a\u0644 \u0645\u0631\u0627\u0633\u0644 \u0627\u0644\u0648\u0627\u0631\u062f"
-  },
-  {
+   "depends_on": "inbox_contact",
    "fieldname": "inbox_contact_mobile",
    "fieldtype": "Data",
-   "label": "\u062a\u0644\u0641\u0648\u0646 \u0645\u0631\u0627\u0633\u0644 \u0627\u0644\u0648\u0627\u0631\u062f"
+   "label": "\u062a\u0644\u0641\u0648\u0646 \u062c\u0647\u0629 \u0627\u062a\u0635\u0627\u0644 \u0627\u0644\u0648\u0627\u0631\u062f"
   },
   {
+   "depends_on": "inbox_contact",
    "fieldname": "inbox_contact_email",
    "fieldtype": "Data",
-   "label": "\u0627\u064a\u0645\u064a\u0644 \u0645\u0631\u0627\u0633\u0644 \u0627\u0644\u0648\u0627\u0631\u062f"
+   "label": "\u0627\u064a\u0645\u064a\u0644 \u062c\u0647\u0629 \u0627\u062a\u0635\u0627\u0644 \u0627\u0644\u0648\u0627\u0631\u062f"
   },
   {
    "fieldname": "column_break_18",
    "fieldtype": "Column Break"
   },
   {
+   "depends_on": "inbox_party_type",
    "fieldname": "inbox_party",
-   "fieldtype": "Link",
+   "fieldtype": "Dynamic Link",
    "label": "\u0627\u0644\u062c\u0647\u0629 \u0627\u0644\u0648\u0627\u0631\u062f \u0645\u0646\u0647\u0627",
-   "options": "Assignment Transaction Party",
-   "reqd": 1
+   "options": "inbox_party_type"
   },
   {
    "fieldname": "inbox_type",
@@ -203,6 +203,7 @@
   },
   {
    "collapsible": 1,
+   "collapsible_depends_on": "eval:!doc.__islocal",
    "fieldname": "ac_attachments_section",
    "fieldtype": "Section Break",
    "label": "\u0645\u0631\u0641\u0642\u0627\u062a \u0627\u0644\u0645\u0639\u0627\u0645\u0644\u0629"
@@ -284,10 +285,28 @@
    "label": "Company",
    "options": "Company",
    "reqd": 1
+  },
+  {
+   "fieldname": "inbox_party_type",
+   "fieldtype": "Select",
+   "label": "\u0646\u0648\u0639 \u0627\u0644\u062c\u0647\u0629 \u0627\u0644\u0648\u0627\u0631\u062f \u0645\u0646\u0647\u0627",
+   "options": "Administrative Communication Party\nSupplier\nCustomer\nEmployee\nDepartment\nCompany"
+  },
+  {
+   "depends_on": "inbox_party",
+   "fieldname": "inbox_party_name",
+   "fieldtype": "Data",
+   "label": "\u0627\u0633\u0645 \u0627\u0644\u062c\u0647\u0629 \u0627\u0644\u0648\u0627\u0631\u062f \u0645\u0646\u0647\u0627"
+  },
+  {
+   "depends_on": "inbox_contact",
+   "fieldname": "inbox_contact_name",
+   "fieldtype": "Data",
+   "label": "\u0627\u0633\u0645 \u062c\u0647\u0629 \u0627\u062a\u0635\u0627\u0644 \u0627\u0644\u0648\u0627\u0631\u062f"
   }
  ],
  "is_submittable": 1,
- "modified": "2021-01-12 16:55:52.683669",
+ "modified": "2021-01-19 21:22:52.352145",
  "modified_by": "Administrator",
  "module": "Administrative Communication",
  "name": "Administrative Transaction",

@@ -6,7 +6,9 @@
  "field_order": [
   "ac_status_on_submit",
   "default_assignment_closing_expected_days",
-  "role_allowed_to_set_status"
+  "role_allowed_to_set_status",
+  "decisions_notification_template",
+  "administrative_communication_manager_role"
  ],
  "fields": [
   {
@@ -25,10 +27,22 @@
    "fieldtype": "Link",
    "label": "Role Allowed to Set Status",
    "options": "Role"
+  },
+  {
+   "fieldname": "decisions_notification_template",
+   "fieldtype": "Link",
+   "label": "Decisions Notification Template",
+   "options": "Email Template"
+  },
+  {
+   "fieldname": "administrative_communication_manager_role",
+   "fieldtype": "Link",
+   "label": "Administrative Communication Manager Role",
+   "options": "Role"
   }
  ],
  "issingle": 1,
- "modified": "2021-01-12 15:25:21.295095",
+ "modified": "2021-01-19 23:23:55.884051",
  "modified_by": "Administrator",
  "module": "Administrative Communication",
  "name": "Administrative Communication Settings",
