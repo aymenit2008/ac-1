@@ -121,4 +121,3 @@ def get_assignment_transaction(dt, dn):
 		frappe.throw(_("This user {0} has not employee".format(frappe.session.user)))
 
 	return at
-

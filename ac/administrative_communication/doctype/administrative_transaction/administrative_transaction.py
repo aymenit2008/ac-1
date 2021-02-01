@@ -48,4 +48,17 @@ class AdministrativeTransaction(Document):
 				self.db_set('status', status, update_modified = update_modified)				
 				return
 
+@frappe.whitelist()
+def get_decision_and_generalization(dt, dn):
+	doc = frappe.get_doc(dt, dn)
+	dg = frappe.new_doc("Decisions And Generalizations")
+
+	if dt in ("Administrative Transaction"):
+		dg.administrative_transaction = dn
+		dg.content=doc.content
+		dg.subject=doc.subject
+
+	return dg
+
+
 		
