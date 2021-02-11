@@ -131,8 +131,8 @@
   }
  ],
  "is_submittable": 1,
- "modified": "2021-02-01 20:47:31.429492",
- "modified_by": "ac@gmil.com",
+ "modified": "2021-02-11 19:08:54.185735",
+ "modified_by": "Administrator",
  "module": "Administrative Communication",
  "name": "Decisions And Generalizations",
  "owner": "ac@gmil.com",
@@ -151,8 +151,8 @@
   },
   {
    "amend": 1,
+   "cancel": 1,
    "create": 1,
-   "delete": 1,
    "email": 1,
    "export": 1,
    "print": 1,

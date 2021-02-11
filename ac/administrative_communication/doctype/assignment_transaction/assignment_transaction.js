@@ -50,12 +50,12 @@ frappe.ui.form.on('Assignment Transaction', {
 					frm.set_value('assigned_to_employee', value.employee)
 					cur_frm.refresh()
 				} else {
-					frappe.msgprint('Current user has not employee')
+					frappe.msgprint('Current user has not Employee')
 				}
 			})
 		}
 		if (!frm.doc.assigned_to_type) {
-			msgprint('assigned_to_type is Mandatory');
+			msgprint('Assigned To Type is Mandatory');
 			validated = false;
 		}
 	},
@@ -67,7 +67,7 @@ frappe.ui.form.on('Assignment Transaction', {
 					frm.set_value('assigned_to_employee', value.employee)
 					cur_frm.refresh()
 				} else {
-					frappe.msgprint('Current user has not employee')
+					frappe.msgprint('Current user has not Employee')
 				}
 			})
 		}
@@ -273,7 +273,8 @@ frappe.ui.form.on('Assignment Transaction', {
 			label: __(''),
 			fieldtype: 'TextEditor',
 			fieldname: 'reply',
-			'reqd':1
+			'reqd':1,
+			default:frm.doc.assignment_description_result
 		},
 		(values) => {
 			console.log(values.reply);

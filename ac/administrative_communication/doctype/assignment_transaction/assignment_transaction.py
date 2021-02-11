@@ -27,7 +27,7 @@ class AssignmentTransaction(Document):
 					newstatus='Completed'
 				else:					
 					newstatus='Pending'
-				frappe.msgprint('{0} = {1}'.format(a.name,a.status))
+				##frappe.msgprint('{0} = {1}'.format(a.name,a.status))
 			if newstatus!='':
 				doc = frappe.get_doc("Administrative Transaction", self.administrative_transaction)
 				if doc.status!=newstatus:
@@ -41,12 +41,25 @@ class AssignmentTransaction(Document):
 				self.posting_date=now()
 			if not self.exp_closing_date:
 				self.exp_closing_date=add_days(now(), frappe.db.get_single_value("Administrative Communication Settings", "default_assignment_closing_expected_days"))
+		if self.assigned_to_type=='Employee':
+			if not self.assigned_to_employee:
+				frappe.throw('Assigned to Employee is Mandatory')
+		elif self.assigned_to_type=='Department':
+			if not self.assigned_to_department:
+				frappe.throw('Assigned to Department is Mandatory')
 
 
-	def set_reply(self,reply=None):	
+	def set_reply(self,reply=None):
 		if not reply:	
 			frappe.throw('Replay is Required')
 		if self.status=='Received':
+			authorized_role=frappe.db.get_single_value("Administrative Communication Settings", "role_allowed_to_set_status")				
+			if frappe.session.user!='Administrator' and frappe.session.user!=self.assigned_to_user:
+				if authorized_role:
+					if not frappe.user.has_role(authorized_role):
+						frappe.throw('You are not authorized to receive current Assignment Transaction')
+				else:
+					frappe.throw('You are not authorized to receive current Assignment Transaction')						
 			if self.assignment_description_result==reply:
 				frappe.throw('Replay Must to be Not Same Last Replay')
 			else:
@@ -60,6 +73,13 @@ class AssignmentTransaction(Document):
 	def set_status(self,status=None):	
 		if status:
 			if status=='Received':
+				authorized_role=frappe.db.get_single_value("Administrative Communication Settings", "role_allowed_to_set_status")				
+				if frappe.session.user!='Administrator' and frappe.session.user!=self.assigned_to_user:
+					if authorized_role:
+						if not frappe.user.has_role(authorized_role):
+							frappe.throw('You are not authorized to receive current Assignment Transaction')
+					else:
+						frappe.throw('You are not authorized to receive current Assignment Transaction')				
 				self.receive_date=now()
 			elif status=='Replied':
 				self.reply_date=now()
@@ -72,7 +92,7 @@ class AssignmentTransaction(Document):
 	def before_submit(self):
 		self.status='Open'
 		self.posting_date=now()
-		frappe.msgprint('before_submit')
+		##frappe.msgprint('before_submit')
 	
 	def on_submit(self):
 		frappe.get_doc("Administrative Transaction", self.administrative_transaction).set_status(update=True,status='Pending')
@@ -116,8 +136,8 @@ def get_assignment_transaction(dt, dn):
 		if emp_dep:
 			at.assigned_by_department=emp_dep
 		else:
-			frappe.msgprint(_('this employee {0} has not department'.format(emp_name)))
+			frappe.msgprint(_('This Employee {0} has not Department'.format(emp_name)))
 	else:
-		frappe.throw(_("This user {0} has not employee".format(frappe.session.user)))
+		frappe.throw(_("This user {0} has not Employee".format(frappe.session.user)))
 
 	return at
