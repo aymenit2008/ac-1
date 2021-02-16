@@ -15,10 +15,10 @@ frappe.ui.form.on('Assignment Transaction', {
 					+ "<li><b style='color:blue'>مستوى سرية المعاملة</b> </br><h4>" + value.secret_level + "<h4></li>"
 					+ "<li><b style='color:blue'>المحتوى</b> </br><h4>" + value.content + " </li>"
 
-					+ "</ul>", 'Administrative Transaction Info')
+					+ "</ul>", __('Administrative Transaction Info'))
 			})
 		} else {
-			frappe.show_alert('There is no Administrative Transaction', 5);
+			frappe.show_alert(__('There is no Administrative Transaction'), 5);
 		}
 		//frappe.show_alert('Hi, do you have a new message', 5);
 	},
@@ -35,10 +35,10 @@ frappe.ui.form.on('Assignment Transaction', {
 					+ "<li><b style='color:blue'>الجهة المحال اليها</b> </br><h4>" + value.assigned_to_department + "<h4></li>"
 					+ "<li><b style='color:blue'>الموضف المحال اليه</b> </br><h4>" + value.assigned_to_employee + " </li>"
 					+ "<li><b style='color:blue'>المراسل</b> </br><h4>" + value.transporter + " </li>"
-					+ "</ul>", 'Assignment Transaction Info')
+					+ "</ul>", __('Assignment Transaction Info'))
 			})
 		} else {
-			frappe.show_alert('There is no Assignment Transactions', 5);
+			frappe.show_alert(__('There is no Assignment Transactions'), 5);
 		}
 		//frappe.show_alert('Hi, do you have a new message', 5);
 	},
@@ -50,12 +50,12 @@ frappe.ui.form.on('Assignment Transaction', {
 					frm.set_value('assigned_to_employee', value.employee)
 					cur_frm.refresh()
 				} else {
-					frappe.msgprint('Current user has not Employee')
+					frappe.msgprint(__('Current user has not Employee'))
 				}
 			})
 		}
 		if (!frm.doc.assigned_to_type) {
-			msgprint('Assigned To Type is Mandatory');
+			msgprint(__('Assigned To Type is Mandatory'))
 			validated = false;
 		}
 	},
@@ -119,7 +119,7 @@ frappe.ui.form.on('Assignment Transaction', {
 				if (value.department_manager) {
 					frm.set_value('assigned_to_employee', value.department_manager)
 				} else {
-					frappe.msgprint('This Department has not Manager')
+					frappe.msgprint(__('This Department has not Manager'))
 				}
 			})
 		}
@@ -132,7 +132,7 @@ frappe.ui.form.on('Assignment Transaction', {
 					frm.set_value('assigned_to_department', value.department)
 					cur_frm.refresh()
 				} else {
-					frappe.msgprint('This Employee has not Department')
+					frappe.msgprint(__('This Employee has not Department'))
 				}
 			})
 		}

@@ -20,12 +20,14 @@
   "assigned_to_section",
   "assigned_by_department",
   "assigned_by_employee",
+  "assigned_by_employee_name",
   "assigned_by_user",
   "is_urgent",
   "column_break_18",
   "assigned_to_type",
   "assigned_to_department",
   "assigned_to_employee",
+  "assigned_to_employee_name",
   "assigned_to_user",
   "assigned_by_section",
   "posting_date",
@@ -67,7 +69,6 @@
    "read_only": 1
   },
   {
-   "collapsible": 1,
    "fieldname": "assignment_transaction_details",
    "fieldtype": "Section Break",
    "label": "\u062a\u0641\u0627\u0635\u064a\u0644 \u0627\u0644\u0627\u062d\u0627\u0644\u0629"
@@ -97,7 +98,6 @@
    "read_only": 1
   },
   {
-   "collapsible": 1,
    "fieldname": "assigned_to_section",
    "fieldtype": "Section Break",
    "label": "\u0645\u062d\u0627\u0644\u0629 \u0645\u0646 / \u0627\u0644\u0649"
@@ -163,7 +163,8 @@
    "ignore_user_permissions": 1,
    "label": "\u0627\u0644\u062c\u0647\u0629 \u0627\u0644\u0645\u062d\u064a\u0644\u0629",
    "options": "Department",
-   "permlevel": 1
+   "permlevel": 1,
+   "read_only": 1
   },
   {
    "default": "0",
@@ -297,10 +298,24 @@
    "label": "\u062a\u0627\u0631\u064a\u062e \u0627\u0644\u0631\u062f",
    "no_copy": 1,
    "read_only": 1
+  },
+  {
+   "fetch_from": "assigned_by_employee.employee_name",
+   "fieldname": "assigned_by_employee_name",
+   "fieldtype": "Data",
+   "label": " \u0627\u0633\u0645 \u0627\u0644\u0645\u0648\u0638\u0641 \u0627\u0644\u0645\u062d\u064a\u0644",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "assigned_to_employee.employee_name",
+   "fieldname": "assigned_to_employee_name",
+   "fieldtype": "Data",
+   "label": "\u0627\u0633\u0645 \u0627\u0644\u0645\u0648\u0638\u0641 \u0627\u0644\u0645\u062d\u0627\u0644 \u0627\u0644\u064a\u0647",
+   "read_only": 1
   }
  ],
  "is_submittable": 1,
- "modified": "2021-02-11 19:42:22.898500",
+ "modified": "2021-02-16 11:40:10.875819",
  "modified_by": "Administrator",
  "module": "Administrative Communication",
  "name": "Assignment Transaction",
