@@ -60,7 +60,7 @@ frappe.ui.form.on('Assignment Transaction', {
 		}
 	},
 	setup: function (frm) {		
-		if (!frm.doc.assigned_by_employee) {
+		/*if (!frm.doc.assigned_by_employee) {
 			frappe.db.get_value("Employee", { "user_id": frappe.session.user }, ["name", "department"], function (value) {
 				if (value.employee) {
 					frm.set_value('assigned_by_department', value.department)
@@ -70,7 +70,7 @@ frappe.ui.form.on('Assignment Transaction', {
 					frappe.msgprint('Current user has not Employee')
 				}
 			})
-		}
+		}*/
 		if (!frm.doc.assigned_to_type) {
 			frm.set_value('assigned_to_department', '')
 			frm.set_value('assigned_to_employee', '')
@@ -137,7 +137,7 @@ frappe.ui.form.on('Assignment Transaction', {
 			})
 		}
 	},
-	assigned_by_employee: function (frm) {
+	/*assigned_by_employee: function (frm) {
 		if (frm.doc.assigned_by_employee) {
 			frappe.db.get_value("Employee", { "name": frm.doc.assigned_by_employee }, "department", function (value) {
 				if (value.department) {
@@ -148,7 +148,7 @@ frappe.ui.form.on('Assignment Transaction', {
 				}
 			})
 		}
-	},
+	},*/
 	refresh: function (frm) {
 		frm.trigger('validate_assignment_description')
 		if (frm.doc.docstatus == 1) {

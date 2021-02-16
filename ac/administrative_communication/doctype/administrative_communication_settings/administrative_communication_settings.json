@@ -4,18 +4,11 @@
  "editable_grid": 1,
  "engine": "InnoDB",
  "field_order": [
-  "ac_status_on_submit",
   "default_assignment_closing_expected_days",
   "role_allowed_to_set_status",
-  "decisions_notification_template",
-  "administrative_communication_manager_role"
+  "decisions_notification_template"
  ],
  "fields": [
-  {
-   "fieldname": "ac_status_on_submit",
-   "fieldtype": "Data",
-   "label": "ac status on submit"
-  },
   {
    "default": "1",
    "fieldname": "default_assignment_closing_expected_days",
@@ -33,16 +26,10 @@
    "fieldtype": "Link",
    "label": "Decisions Notification Template",
    "options": "Email Template"
-  },
-  {
-   "fieldname": "administrative_communication_manager_role",
-   "fieldtype": "Link",
-   "label": "Administrative Communication Manager Role",
-   "options": "Role"
   }
  ],
  "issingle": 1,
- "modified": "2021-02-11 19:04:43.417735",
+ "modified": "2021-02-15 10:27:36.778178",
  "modified_by": "Administrator",
  "module": "Administrative Communication",
  "name": "Administrative Communication Settings",

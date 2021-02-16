@@ -56,7 +56,7 @@ class AssignmentTransaction(Document):
 			authorized_role=frappe.db.get_single_value("Administrative Communication Settings", "role_allowed_to_set_status")				
 			if frappe.session.user!='Administrator' and frappe.session.user!=self.assigned_to_user:
 				if authorized_role:
-					if not frappe.user.has_role(authorized_role):
+					if authorized_role not in frappe.get_roles(frappe.session.user):
 						frappe.throw('You are not authorized to receive current Assignment Transaction')
 				else:
 					frappe.throw('You are not authorized to receive current Assignment Transaction')						
@@ -76,7 +76,7 @@ class AssignmentTransaction(Document):
 				authorized_role=frappe.db.get_single_value("Administrative Communication Settings", "role_allowed_to_set_status")				
 				if frappe.session.user!='Administrator' and frappe.session.user!=self.assigned_to_user:
 					if authorized_role:
-						if not frappe.user.has_role(authorized_role):
+						if authorized_role not in frappe.get_roles(frappe.session.user):
 							frappe.throw('You are not authorized to receive current Assignment Transaction')
 					else:
 						frappe.throw('You are not authorized to receive current Assignment Transaction')				
