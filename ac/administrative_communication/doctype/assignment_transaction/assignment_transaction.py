@@ -47,6 +47,7 @@ class AssignmentTransaction(Document):
 		elif self.assigned_to_type=='Department':
 			if not self.assigned_to_department:
 				frappe.throw(_('Assigned to Department is Mandatory'))
+		self.set_title()
 
 
 	def set_reply(self,reply=None):
@@ -117,6 +118,12 @@ class AssignmentTransaction(Document):
 			for atc in self.assignment_transaction_cc:
 				if atc.employee_email:
 					add(self.doctype, self.name, atc.employee_email, 1, 0, 0, 0)
+	
+	def set_title(self):
+		'''Set title '''
+		if not self.title:
+			doc = frappe.get_doc('Administrative Transaction', self.administrative_transaction)			
+			self.title = _('{0} ({1}) - {2}').format(self.assignment_transaction_action, doc.subject, self.assigned_to_employee_name)
 			
 
 
