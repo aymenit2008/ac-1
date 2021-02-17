@@ -69,7 +69,12 @@ def get_data():
 					"description":_("Assignment Transaction Action"),
 					"onboard": 1
 				},
-
+{
+					"type": "doctype",
+					"name": "Letter Template",
+					"description":_("Letter Template"),
+					"onboard": 1
+				},
 
 
 			]
