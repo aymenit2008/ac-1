@@ -60,5 +60,31 @@ def get_decision_and_generalization(dt, dn):
 
 	return dg
 
+@frappe.whitelist()
+def get_administrative_transaction(dt, dn):	
+	doc = frappe.get_doc(dt, dn)
+	at = frappe.new_doc("Administrative Transaction")
+	at.type='صادر'
+	if dt in ("Assignment Transaction"):
+		doc_ac = frappe.get_doc("Assignment Transaction", dn)
+		
+		at.assignment_transaction=doc_ac.name
+		at.content=doc_ac.assignment_description_result
+		##
+		doc_at = frappe.get_doc("Administrative Transaction", doc_ac.administrative_transaction)
+		if doc_at:
+			at.subject=_("Replay: {0}".format(doc_at.subject))
+			at.source=doc_at.source
+			at.inbox_party_type=doc_at.inbox_party_type
+			at.inbox_party=doc_at.inbox_party
+			at.inbox_party_name=doc_at.inbox_party_name			
+			at.inbox_type=doc_at.inbox_type
+			at.inbox_date=nowdate()
+			at.inbox_contact=doc_at.inbox_contact
+			at.inbox_contact_name=doc_at.inbox_contact_name
+			at.inbox_contact_email=doc_at.inbox_contact_email
+			at.inbox_contact_mobile=doc_at.inbox_contact_mobile			
+			at.append('ac_links',{'administrative_transaction':doc_ac.administrative_transaction})
+	return at
 
 		

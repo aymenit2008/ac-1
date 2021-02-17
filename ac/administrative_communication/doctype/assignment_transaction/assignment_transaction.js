@@ -161,6 +161,15 @@ frappe.ui.form.on('Assignment Transaction', {
 					},
 					__('Set Status')
 				);
+				frm.add_custom_button(
+					__('Rejected'),
+					function () {
+						console.log('is_Rejected')
+						frm.trigger('reject_dialog')
+						//frm.events.set_status(frm, 'Rejected');
+					},
+					__('Set Status')
+				);
 				cur_frm.page.set_inner_btn_group_as_primary(__('Set Status'));
 			} else if (frm.doc.status == 'Received') {
 				if(frm.doc.assignment_description_result){
@@ -184,6 +193,16 @@ frappe.ui.form.on('Assignment Transaction', {
 					__('Set Status')
 				);
 				cur_frm.page.set_inner_btn_group_as_primary(__('Set Status'));
+			}else if (frm.doc.status == 'Rejected' || frm.doc.status =='Completed') {
+				frm.add_custom_button(
+					__('Cancelled'),
+					function () {
+						console.log('is_Cancelled')
+						frm.events.set_status(frm, 'Cancelled');
+					},
+					__('Set Status')
+				);
+				cur_frm.page.set_inner_btn_group_as_primary(__('Set Status'));
 			}
 		}
 				
@@ -191,7 +210,7 @@ frappe.ui.form.on('Assignment Transaction', {
 			frm.add_custom_button(
 				__('Reply'),
 				function () {
-					console.log('ahmed')
+					
 					frm.events.reply_dialog(frm);
 				},
 				__('Make')
@@ -200,21 +219,27 @@ frappe.ui.form.on('Assignment Transaction', {
 				cur_frm.page.set_inner_btn_group_as_primary(__('Make'));
 			}
 			
-		}	
+		}
 		if (frm.doc.status != 'Open' && frm.doc.status != 'Draft' && frm.doc.status != 'Cancelled') {
 			frm.add_custom_button(
 				__('Assignment Transaction'),
-				function () {
-					console.log('ahmed')
-					frm.events.make_assignment_transaction(frm);
+				function () {				
+					frm.events.make_transaction(frm,'ac.administrative_communication.doctype.assignment_transaction.assignment_transaction.get_assignment_transaction');
+				},
+				__('Make')
+			);
+			frm.add_custom_button(
+				__('External Message'),
+				function () {				
+					frm.events.make_transaction(frm,'ac.administrative_communication.doctype.administrative_transaction.administrative_transaction.get_administrative_transaction');
 				},
 				__('Make')
 			);
 		}	
 	},
-	make_assignment_transaction: function (frm) {
+	make_transaction: function (frm,method_path='') {
 		return frappe.call({
-			method: 'ac.administrative_communication.doctype.assignment_transaction.assignment_transaction.get_assignment_transaction',
+			method: method_path,
 			args: {
 				"dt": frm.doc.doctype,
 				"dn": frm.doc.name
@@ -244,6 +269,10 @@ frappe.ui.form.on('Assignment Transaction', {
 		})
 	},
 	validate_assignment_description: function (frm) {
+		if(frm.doc.status == 'Draft'){
+			//frm.trigger('reject_dialog')
+
+		};
 		if (frm.doc.__islocal) {
 			frm.set_df_property('assignment_description_result', 'hidden', 1);
 			frm.set_df_property('assignment_description_result', 'read_only', 1);
@@ -259,13 +288,41 @@ frappe.ui.form.on('Assignment Transaction', {
 	},
 	receive_dialog: function (frm) {
 		frappe.prompt({
-			label: __('Please Confirm Receive'),
+			label: __('Please Confirm Receive or Reject it from Set Status Button'),
 			fieldtype: 'Heading'
 		},
-			function () {
-				frm.events.set_status(frm, 'Received');
-			}
-			, __('Confirm Message'), __('Confirm'));
+		function () {
+			frm.events.set_status(frm, 'Received');
+		}
+		, __('Confirm Message'), __('Confirm'));
+
+	},
+	reject_dialog: function (frm) {
+		frappe.prompt({
+			label: __('Reason of Reject'),
+			fieldname: 'reason',
+			fieldtype: 'SmallText',
+			'reqd':1
+		},
+		(values) => {
+			return frappe.call({
+				doc: frm.doc,
+				method: 'set_status',
+				args: { status: 'Rejected', reason:values.reason },
+				callback: function (r) {
+					console.log(r)
+					if(frm.doc.docstatus==0){
+						//frm.save();
+					}else{
+						console.log(r)
+						//frm.save('Update');
+					}				
+					frm.refresh();
+					//frm.toolbar.refresh();
+				}
+			})
+		}		
+		, __('Reject Message'), __('Reject'));
 
 	},
 	reply_dialog: function (frm) {

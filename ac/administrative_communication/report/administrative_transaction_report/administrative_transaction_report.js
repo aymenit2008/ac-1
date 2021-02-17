@@ -31,7 +31,7 @@ frappe.query_reports["Administrative Transaction Report"] = {
 		{
 			fieldtype: "Select",
 			label: __("Status"),
-			options: [__(""), __("Draft"), __("Open"), __("Pending"), __("Completed"), __("Cancelled")],
+			options: ["", "Draft", "Open", "Pending", "Completed", "Cancelled"],
 			fieldname: "status",
 			default: ''
 		},

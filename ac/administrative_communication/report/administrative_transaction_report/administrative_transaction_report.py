@@ -34,7 +34,7 @@ def get_data(filters, conditions):
 			adt.status,  
 			(select IFNULL(GROUP_CONCAT(ast.assigned_to_department order by ast.name asc SEPARATOR ', '),"") as departments from `tabAssignment Transaction` ast where ast.administrative_transaction=adt.name) as departments,
 			adt.transaction_date,			
-			DATEDIFF(adt.posting_date, NOW()) AS lating_days
+			DATEDIFF(IFNULL(adt.closing_date,NOW()), adt.posting_date) AS lating_days
 		FROM
 			`tabAdministrative Transaction` adt	
 		WHERE
@@ -64,7 +64,7 @@ def get_columns(filters):
 	{
 		"fieldname": "status",
 		"label": _("Status"),
-		"fieldtype": "Data",		
+		"fieldtype": "Select",		
 		"width": 80
 	},
 	{

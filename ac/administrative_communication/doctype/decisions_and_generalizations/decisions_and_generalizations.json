@@ -19,7 +19,9 @@
   "public",
   "send_email",
   "details_section",
+  "letter_template",
   "content",
+  "section_break_17",
   "assignment_transaction_cc",
   "amended_from"
  ],
@@ -90,6 +92,8 @@
    "options": "Administrative Transaction"
   },
   {
+   "fetch_from": "letter_template.content",
+   "fetch_if_empty": 1,
    "fieldname": "content",
    "fieldtype": "Text Editor",
    "label": "\u0627\u0644\u0645\u062d\u062a\u0648\u0649"
@@ -128,10 +132,20 @@
    "fieldname": "public",
    "fieldtype": "Check",
    "label": "\u0644\u0644\u062c\u0645\u064a\u0639"
+  },
+  {
+   "fieldname": "letter_template",
+   "fieldtype": "Link",
+   "label": "Letter Template",
+   "options": "Letter Template"
+  },
+  {
+   "fieldname": "section_break_17",
+   "fieldtype": "Section Break"
   }
  ],
  "is_submittable": 1,
- "modified": "2021-02-11 19:08:54.185735",
+ "modified": "2021-02-17 10:17:28.622712",
  "modified_by": "Administrator",
  "module": "Administrative Communication",
  "name": "Decisions And Generalizations",

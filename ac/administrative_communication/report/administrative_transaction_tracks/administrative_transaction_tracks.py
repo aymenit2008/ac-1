@@ -38,9 +38,8 @@ def get_data(filters, conditions):
 			ast.posting_date,
 			ast.receive_date,
 			ast.closing_date,						
-			DATEDIFF(ast.posting_date, NOW()) AS lating_days,
-			ast.assignment_transaction,
-			ast.administrative_transaction
+			DATEDIFF(IFNULL(ast.closing_date,NOW()), ast.posting_date) AS lating_days,
+			ast.assignment_transaction
 		FROM
 			`tabAssignment Transaction` ast	
 		WHERE			
@@ -68,7 +67,7 @@ def get_columns(filters):
 	{
 		"fieldname": "status",
 		"label": _("Status"),
-		"fieldtype": "Data",		
+		"fieldtype": "Select",		
 		"width": 80
 	},
 	{
@@ -113,14 +112,7 @@ def get_columns(filters):
 		"fieldtype": "Link",
 		"options": "Assignment Transaction",
 		"width": 110
-	},
-	{
-		"fieldname": "administrative_transaction",
-		"label": _("Administrative Transaction"),
-		"fieldtype": "Link",
-		"options": "Administrative Transaction",
-		"width": 110
-	},
+	}
 	]
 
 	return columns

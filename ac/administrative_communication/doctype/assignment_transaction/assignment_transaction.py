@@ -5,19 +5,10 @@
 from __future__ import unicode_literals
 import frappe
 from frappe import _, scrub, ValidationError
-from frappe.utils import flt, comma_or, nowdate, getdate, add_days, now
 from frappe.model.document import Document
+from frappe.utils import flt, comma_or, nowdate, getdate, add_days, now
 
 class AssignmentTransaction(Document):
-	#def on_update(self):
-	#	frappe.msgprint('on_update')
-
-	#def before_save(self):
-	#	frappe.msgprint('before_save')
-
-	#def after_save(self):
-	#	frappe.msgprint('after_save')
-
 	def on_update_after_submit(self):
 		if not self.assignment_transaction:		
 			aa=frappe.db.get_list('Assignment Transaction',filters={'administrative_transaction': self.administrative_transaction,'assignment_transaction':("=", ""),'docstatus':1},fields=['status', 'name'])		
@@ -47,6 +38,8 @@ class AssignmentTransaction(Document):
 		elif self.assigned_to_type=='Department':
 			if not self.assigned_to_department:
 				frappe.throw(_('Assigned to Department is Mandatory'))
+		if self.posting_date>=self.exp_closing_date:
+			frappe.throw(_('Posting Date Cannot be Greater than Expected Date'))
 		self.set_title()
 
 
@@ -54,59 +47,67 @@ class AssignmentTransaction(Document):
 		if not reply:	
 			frappe.throw('Replay is Required')
 		if self.status=='Received':
-			authorized_role=frappe.db.get_single_value("Administrative Communication Settings", "role_allowed_to_set_status")				
-			if frappe.session.user!='Administrator' and frappe.session.user!=self.assigned_to_user:
-				if authorized_role:
-					if authorized_role not in frappe.get_roles(frappe.session.user):
-						frappe.throw(_('You are not authorized to replay current Assignment Transaction'))
-				else:
-					frappe.throw(_('You are not authorized to replay current Assignment Transaction'))						
+			self.validate_user()						
 			if self.assignment_description_result==reply:
 				frappe.throw(_('Replay Must to be Not Same Last Replay'))
 			else:
 				self.assignment_description_result=reply
 		else:
 			frappe.throw(_('Status Should to be Received First'))
-		return True
+		return True					
 		
-			
-		
-	def set_status(self,status=None):	
+	def set_status(self,status=None,reason=None):	
 		if status:
-			if status=='Received':
-				authorized_role=frappe.db.get_single_value("Administrative Communication Settings", "role_allowed_to_set_status")				
-				if frappe.session.user!='Administrator' and frappe.session.user!=self.assigned_to_user:
-					if authorized_role:
-						if authorized_role not in frappe.get_roles(frappe.session.user):
-							frappe.throw(_('You are not authorized to receive current Assignment Transaction'))
-					else:
-						frappe.throw(_('You are not authorized to receive current Assignment Transaction'))				
-				self.receive_date=now()
+			if status=='Received' or status=='Rejected':
+				self.validate_user_()
+				self.receive_date=now()				
 			elif status=='Replied':
-				authorized_role=frappe.db.get_single_value("Administrative Communication Settings", "role_allowed_to_set_status")				
-				if frappe.session.user!='Administrator' and frappe.session.user!=self.assigned_to_user:
-					if authorized_role:
-						if authorized_role not in frappe.get_roles(frappe.session.user):
-							frappe.throw(_('You are not authorized to replay current Assignment Transaction'))
-					else:
-						frappe.throw(_('You are not authorized to replay current Assignment Transaction'))
-				self.reply_date=now()
+				self.validate_user_()				
+				self.reply_date=now()				
 			elif status=='Completed':
-				authorized_role=frappe.db.get_single_value("Administrative Communication Settings", "role_allowed_to_set_status")				
-				if frappe.session.user!='Administrator' and frappe.session.user!=self.assigned_by_user:
-					if authorized_role:
-						if authorized_role not in frappe.get_roles(frappe.session.user):
-							frappe.throw(_('You are not authorized to complete current Assignment Transaction'))
-					else:
-						frappe.throw(_('You are not authorized to complete current Assignment Transaction'))
+				self.validate_user()
+				if self.posting_date>=now():
+					frappe.throw(_('Posting Date Cannot be Greater than Closing Date'))
+				self.closing_date=now()
+			elif status=='Cancelled':
+				self.validate_user__()
 				self.closing_date=now()
 			self.status=status
+			self.append('assignment_transaction_trace',{
+            	'status':self.status,
+            	'user':frappe.session.user,            
+            	'date':now()})
+			if status=='Rejected':
+				self.assignment_description_result=_("Reason of Reject: {0}".format(reason))
+				self.add_comment('Comment', text=self.assignment_description_result)
 		self.save()
 		self.reload()
 
+	def validate_user(self):
+		authorized_role=frappe.db.get_single_value("Administrative Communication Settings", "role_allowed_to_set_status")				
+		if frappe.session.user!='Administrator' and frappe.session.user!=self.assigned_by_user:
+			if authorized_role:
+				if authorized_role not in frappe.get_roles(frappe.session.user):
+					frappe.throw(_('You are not authorized to change status of current Assignment Transaction'))				
+	def validate_user_(self):
+		authorized_role=frappe.db.get_single_value("Administrative Communication Settings", "role_allowed_to_set_status")				
+		if frappe.session.user!='Administrator' and frappe.session.user!=self.assigned_to_user:
+			if authorized_role:
+				if authorized_role not in frappe.get_roles(frappe.session.user):
+					frappe.throw(_('You are not authorized to change status of current Assignment Transaction'))				
+	def validate_user__(self):
+		authorized_role=frappe.db.get_single_value("Administrative Communication Settings", "role_allowed_to_set_status")				
+		if frappe.session.user!='Administrator':
+			if authorized_role:
+				if authorized_role not in frappe.get_roles(frappe.session.user):
+					frappe.throw(_('You are not authorized to change status of current Assignment Transaction'))				
 	def before_submit(self):
 		self.status='Open'
 		self.posting_date=now()
+		self.append('assignment_transaction_trace',{
+            'status':self.status,
+            'user':frappe.session.user,            
+            'date':now()})
 		##frappe.msgprint('before_submit')
 	
 	def on_submit(self):

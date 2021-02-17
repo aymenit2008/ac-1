@@ -44,7 +44,9 @@
   "transporter",
   "is_archived",
   "company",
-  "amended_from"
+  "amended_from",
+  "assignment_transaction_trace_section_section",
+  "assignment_transaction_trace"
  ],
  "fields": [
   {
@@ -242,7 +244,6 @@
    "fieldtype": "Column Break"
   },
   {
-   "allow_on_submit": 1,
    "fieldname": "exp_closing_date",
    "fieldtype": "Datetime",
    "label": "\u062a\u0627\u0631\u064a\u062e \u0627\u0644\u0627\u063a\u0644\u0627\u0642 \u0627\u0644\u0645\u062a\u0648\u0642\u0639",
@@ -276,7 +277,7 @@
    "in_standard_filter": 1,
    "label": "\u062d\u0627\u0644\u0629 \u0627\u0644\u0627\u062d\u0627\u0644\u0629",
    "no_copy": 1,
-   "options": "\nDraft\nOpen\nReceived\nCompleted\nCancelled\nHold\nAssigned\nReplied\nOverdue",
+   "options": "\nDraft\nOpen\nReceived\nCompleted\nCancelled\nHold\nRejected\nAssigned\nReplied\nOverdue",
    "read_only": 1
   },
   {
@@ -307,6 +308,7 @@
    "fetch_from": "assigned_by_employee.employee_name",
    "fieldname": "assigned_by_employee_name",
    "fieldtype": "Data",
+   "in_list_view": 1,
    "label": " \u0627\u0633\u0645 \u0627\u0644\u0645\u0648\u0638\u0641 \u0627\u0644\u0645\u062d\u064a\u0644",
    "read_only": 1
   },
@@ -314,6 +316,7 @@
    "fetch_from": "assigned_to_employee.employee_name",
    "fieldname": "assigned_to_employee_name",
    "fieldtype": "Data",
+   "in_list_view": 1,
    "label": "\u0627\u0633\u0645 \u0627\u0644\u0645\u0648\u0638\u0641 \u0627\u0644\u0645\u062d\u0627\u0644 \u0627\u0644\u064a\u0647",
    "read_only": 1
   },
@@ -325,10 +328,23 @@
    "label": "\u0627\u0644\u0639\u0646\u0648\u0627\u0646",
    "no_copy": 1,
    "print_hide": 1
+  },
+  {
+   "fieldname": "assignment_transaction_trace_section_section",
+   "fieldtype": "Section Break",
+   "label": "Assignment Transaction Trace Section"
+  },
+  {
+   "allow_on_submit": 1,
+   "fieldname": "assignment_transaction_trace",
+   "fieldtype": "Table",
+   "label": "Assignment Transaction Trace",
+   "options": "Assignment Transaction Trace",
+   "read_only": 1
   }
  ],
  "is_submittable": 1,
- "modified": "2021-02-16 12:42:40.874924",
+ "modified": "2021-02-17 08:05:28.058287",
  "modified_by": "Administrator",
  "module": "Administrative Communication",
  "name": "Assignment Transaction",

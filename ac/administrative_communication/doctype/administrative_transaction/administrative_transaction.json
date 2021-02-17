@@ -16,6 +16,7 @@
   "orginal_type",
   "secret_level",
   "content_section",
+  "letter_template",
   "content",
   "inbox_details_section",
   "inbox_party_type",
@@ -44,6 +45,7 @@
   "assignment_date",
   "closing_date",
   "company",
+  "assignment_transaction",
   "amended_from"
  ],
  "fields": [
@@ -121,46 +123,46 @@
    "reqd": 1
   },
   {
-   "collapsible": 1,
    "fieldname": "content_section",
    "fieldtype": "Section Break",
    "label": "\u0645\u062d\u062a\u0648\u0649 \u0627\u0644\u0645\u0639\u0627\u0645\u0644\u0629"
   },
   {
+   "fetch_from": "letter_template.content",
+   "fetch_if_empty": 1,
    "fieldname": "content",
    "fieldtype": "Text Editor",
    "label": "\u0646\u0635 \u0627\u0644\u0645\u0639\u0627\u0645\u0644\u0629",
    "reqd": 1
   },
   {
-   "collapsible": 1,
    "fieldname": "inbox_details_section",
    "fieldtype": "Section Break",
-   "label": "\u062a\u0641\u0627\u0635\u064a\u0644 \u0627\u0644\u0648\u0627\u0631\u062f"
+   "label": "\u0627\u0644\u062a\u0641\u0627\u0635\u064a\u0644"
   },
   {
    "fieldname": "inbox_no",
    "fieldtype": "Data",
-   "label": "\u0631\u0642\u0645 \u0627\u0644\u0648\u0627\u0631\u062f"
+   "label": "\u0627\u0644\u0631\u0642\u0645"
   },
   {
    "depends_on": "inbox_party",
    "fieldname": "inbox_contact",
    "fieldtype": "Link",
-   "label": "\u062c\u0647\u0629 \u0627\u062a\u0635\u0627\u0644 \u0627\u0644\u0648\u0627\u0631\u062f",
+   "label": "\u062c\u0647\u0629 \u0627\u0644\u0627\u062a\u0635\u0627\u0644",
    "options": "Contact"
   },
   {
    "depends_on": "inbox_contact",
    "fieldname": "inbox_contact_mobile",
    "fieldtype": "Data",
-   "label": "\u062a\u0644\u0641\u0648\u0646 \u062c\u0647\u0629 \u0627\u062a\u0635\u0627\u0644 \u0627\u0644\u0648\u0627\u0631\u062f"
+   "label": "\u062a\u0644\u0641\u0648\u0646 \u062c\u0647\u0629 \u0627\u0644\u0627\u062a\u0635\u0627\u0644"
   },
   {
    "depends_on": "inbox_contact",
    "fieldname": "inbox_contact_email",
    "fieldtype": "Data",
-   "label": "\u0627\u064a\u0645\u064a\u0644 \u062c\u0647\u0629 \u0627\u062a\u0635\u0627\u0644 \u0627\u0644\u0648\u0627\u0631\u062f"
+   "label": "\u0627\u064a\u0645\u064a\u0644 \u062c\u0647\u0629 \u0627\u0644\u0627\u062a\u0635\u0627\u0644"
   },
   {
    "fieldname": "column_break_18",
@@ -170,27 +172,26 @@
    "depends_on": "inbox_party_type",
    "fieldname": "inbox_party",
    "fieldtype": "Dynamic Link",
-   "label": "\u0627\u0644\u062c\u0647\u0629 \u0627\u0644\u0648\u0627\u0631\u062f \u0645\u0646\u0647\u0627",
+   "label": "\u0627\u0644\u062c\u0647\u0629",
    "options": "inbox_party_type"
   },
   {
    "fieldname": "inbox_type",
    "fieldtype": "Select",
-   "label": "\u0646\u0648\u0639 \u0627\u0644\u0648\u0627\u0631\u062f",
+   "label": "\u0627\u0644\u0646\u0648\u0639",
    "options": "\u0627\u064a\u0645\u064a\u0644\n\u0645\u062d\u0627\u062f\u062b\u0629\n\u062a\u0644\u0641\u0648\u0646\n\u0631\u0633\u0627\u0644\u0629\n\u062d\u062f\u062b\n\u0645\u0642\u0627\u0628\u0644\u0629\n\u0632\u064a\u0627\u0631\u0629\n\u0627\u062e\u0631\u0649"
   },
   {
    "fieldname": "inbox_date",
    "fieldtype": "Date",
-   "label": "\u062a\u0627\u0631\u064a\u062e \u0635\u0627\u062f\u0631 \u0627\u0644\u0648\u0627\u0631\u062f"
+   "label": "\u062a\u0627\u0631\u064a\u062e \u0627\u0644\u0648\u062b\u064a\u0642\u0629"
   },
   {
    "fieldname": "inbox_delivery_date",
    "fieldtype": "Date",
-   "label": "\u062a\u0627\u0631\u064a\u062e \u0625\u0633\u062a\u0644\u0627\u0645 \u0627\u0644\u0648\u0627\u0631\u062f"
+   "label": "\u062a\u0627\u0631\u064a\u062e \u0627\u0644\u0627\u0633\u062a\u0644\u0627\u0645"
   },
   {
-   "collapsible": 1,
    "fieldname": "ac_parties_section",
    "fieldtype": "Section Break",
    "label": "\u0627\u0644\u0627\u0637\u0631\u0627\u0641 \u0627\u0644\u0645\u0631\u062a\u0628\u0637\u0629 \u0628\u0627\u0644\u0645\u0639\u0627\u0645\u0644\u0629"
@@ -202,7 +203,6 @@
    "options": "Administrative Transaction Parties"
   },
   {
-   "collapsible": 1,
    "collapsible_depends_on": "eval:!doc.__islocal",
    "fieldname": "ac_attachments_section",
    "fieldtype": "Section Break",
@@ -211,11 +211,10 @@
   {
    "fieldname": "ac_attachments",
    "fieldtype": "Table",
-   "label": "\u0645\u0631\u0641\u0642\u0627\u062a \u0627\u0644\u0645\u0639\u0627\u0645\u0644\u0629",
+   "label": "\u0627\u0644\u0645\u0631\u0641\u0642\u0627\u062a",
    "options": "Administrative Transaction Attachments"
   },
   {
-   "collapsible": 1,
    "fieldname": "ac_links_section",
    "fieldtype": "Section Break",
    "label": "\u0627\u0644\u0645\u0639\u0627\u0645\u0644\u0627\u062a \u0627\u0644\u0645\u0631\u062a\u0628\u0637\u0629 \u0628\u0627\u0644\u0645\u0639\u0627\u0645\u0644\u0629"
@@ -227,7 +226,6 @@
    "options": "Administrative Transaction Links"
   },
   {
-   "collapsible": 1,
    "fieldname": "other_details_section",
    "fieldtype": "Section Break",
    "label": "\u062a\u0641\u0627\u0635\u064a\u0644 \u0627\u062e\u0631\u0649"
@@ -263,7 +261,7 @@
    "allow_on_submit": 1,
    "fieldname": "closing_date",
    "fieldtype": "Datetime",
-   "label": "\u062a\u0627\u0631\u064a\u062e \u0627\u063a\u0644\u0627\u0642 \u0627\u0644\u0645\u0639\u0627\u0645\u0644\u0629",
+   "label": "\u062a\u0627\u0631\u064a\u062e \u0627\u0644\u0627\u063a\u0644\u0627\u0642",
    "read_only": 1
   },
   {
@@ -289,24 +287,39 @@
   {
    "fieldname": "inbox_party_type",
    "fieldtype": "Select",
-   "label": "\u0646\u0648\u0639 \u0627\u0644\u062c\u0647\u0629 \u0627\u0644\u0648\u0627\u0631\u062f \u0645\u0646\u0647\u0627",
+   "label": "\u0646\u0648\u0639 \u0627\u0644\u062c\u0647\u0629",
    "options": "Administrative Communication Party\nSupplier\nCustomer\nEmployee\nDepartment\nCompany"
   },
   {
    "depends_on": "inbox_party",
    "fieldname": "inbox_party_name",
    "fieldtype": "Data",
-   "label": "\u0627\u0633\u0645 \u0627\u0644\u062c\u0647\u0629 \u0627\u0644\u0648\u0627\u0631\u062f \u0645\u0646\u0647\u0627"
+   "label": "\u0627\u0633\u0645 \u0627\u0644\u062c\u0647\u0629"
   },
   {
    "depends_on": "inbox_contact",
    "fieldname": "inbox_contact_name",
    "fieldtype": "Data",
-   "label": "\u0627\u0633\u0645 \u062c\u0647\u0629 \u0627\u062a\u0635\u0627\u0644 \u0627\u0644\u0648\u0627\u0631\u062f"
+   "label": "\u0627\u0633\u0645 \u062c\u0647\u0629 \u0627\u0644\u0627\u062a\u0635\u0627\u0644"
+  },
+  {
+   "fieldname": "letter_template",
+   "fieldtype": "Link",
+   "label": "Letter Template",
+   "options": "Letter Template"
+  },
+  {
+   "allow_on_submit": 1,
+   "fieldname": "assignment_transaction",
+   "fieldtype": "Link",
+   "ignore_user_permissions": 1,
+   "label": "Assignment Transaction",
+   "options": "Assignment Transaction",
+   "read_only": 1
   }
  ],
  "is_submittable": 1,
- "modified": "2021-02-11 19:09:39.891063",
+ "modified": "2021-02-17 11:18:05.918839",
  "modified_by": "Administrator",
  "module": "Administrative Communication",
  "name": "Administrative Transaction",
