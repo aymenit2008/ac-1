@@ -64,7 +64,8 @@ def get_decision_and_generalization(dt, dn):
 def get_administrative_transaction(dt, dn):	
 	doc = frappe.get_doc(dt, dn)
 	at = frappe.new_doc("Administrative Transaction")
-	at.type='صادر'
+	at.source='صادر'
+	at.type='خارجي'
 	if dt in ("Assignment Transaction"):
 		doc_ac = frappe.get_doc("Assignment Transaction", dn)
 		
