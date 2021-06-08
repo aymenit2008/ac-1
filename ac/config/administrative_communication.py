@@ -94,6 +94,12 @@ def get_data():
 					"name": "Administrative Transaction Tracks",
 					"doctype": "Administrative Transaction"
 				},
+				{
+					"type": "report",
+					"is_query_report": True,
+					"name": "Assignment Transaction Report",
+					"doctype": "Assignment Transaction"
+				},
 			]
 		},
 	]

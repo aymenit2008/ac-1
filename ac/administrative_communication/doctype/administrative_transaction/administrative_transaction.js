@@ -2,6 +2,14 @@
 // For license information, please see license.txt
 frappe.provide("ac.administrative_communication");
 frappe.ui.form.on('Administrative Transaction', {
+	validate:function(frm) {
+		if (!frm.doc.small_user_signature){
+			frm.set_value('small_user_signature', frappe.session.user)
+		}
+		if (!frm.doc.user_signature){
+			frm.set_value('user_signature', frappe.session.user)
+		}
+	},
 	setup: function(frm) {
 		frm.set_query("inbox_party_type", function() {
 			
@@ -22,12 +30,19 @@ frappe.ui.form.on('Administrative Transaction', {
 				};
 			}
 		});
+		if (frm.__islocal){
+			if (!frm.doc.small_user_signature){
+				frm.set_value('small_user_signature', frappe.session.user)
+			}
+			if (!frm.doc.user_signature){
+				frm.set_value('user_signature', frappe.session.user)
+			}
+		}		
 	},
 	refresh: function (frm) {
-
-		frm.set_df_property('ac_attachments_section',  'hidden',  frm.doc.__islocal ? 1 : 0);
-		console.log('aseel')
+		frm.set_df_property('ac_attachments_section',  'hidden',  frm.doc.__islocal ? 1 : 0);		
 		if(frm.doc.docstatus==1){
+			
 			frm.add_custom_button(
 				__('Assignment Transaction'),
 				function() {
@@ -46,19 +61,17 @@ frappe.ui.form.on('Administrative Transaction', {
 			if (!frm.doc.assignment_date){
 				cur_frm.page.set_inner_btn_group_as_primary(__('Make'));
 			}
-			if (frm.doc.status == 'Pending') {
+			if (frm.doc.status == 'Pending' || (frm.doc.status == 'Open' && frm.doc.source == 'Out' && frm.doc.type == 'External')) {
 				frm.add_custom_button(
 					__('Completed'),
-					function () {
-						console.log('is_receipt')
+					function () {						
 						frm.events.set_status(frm,'Completed',true);
 					},
 					__('Set Status')
 				);
 				cur_frm.page.set_inner_btn_group_as_primary(__('Set Status'));
 			}
-		}
-		
+		}		
 	},
 	make_assignment_transaction: function(frm) {
 		return frappe.call({
@@ -73,8 +86,7 @@ frappe.ui.form.on('Administrative Transaction', {
 			}
 		});
 	},
-	make_decision_and_generalization: function(frm) {
-		console.log("aa")
+	make_decision_and_generalization: function(frm) {		
 		return frappe.call({
 			method: 'ac.administrative_communication.doctype.administrative_transaction.administrative_transaction.get_decision_and_generalization',
 			args: {
@@ -93,7 +105,6 @@ frappe.ui.form.on('Administrative Transaction', {
 			method: 'set_status',
 			args:{status:status,update:update},
 			callback: function (r) {
-				frm.save();
 				frm.refresh();
 				frm.toolbar.refresh();
 			}
@@ -132,8 +143,7 @@ frappe.ui.form.on('Administrative Transaction', {
 				})
 			}else{
 				frm.set_value('inbox_party_name','')
-			}
-			
+			}			
 		}
 	},
 	inbox_contact: function(frm){
@@ -157,7 +167,6 @@ frappe.ui.form.on('Administrative Transaction', {
 				full_name+=value.last_name
 			}
 			frm.set_value('inbox_contact_name',full_name)
-
 		});
 	}
 });

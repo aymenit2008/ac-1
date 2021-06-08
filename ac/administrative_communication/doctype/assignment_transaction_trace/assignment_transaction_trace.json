@@ -13,9 +13,10 @@
   {
    "allow_on_submit": 1,
    "fieldname": "status",
-   "fieldtype": "Data",
+   "fieldtype": "Select",
    "in_list_view": 1,
    "label": "Status",
+   "options": "Draft\nOpen\nReceived\nCompleted\nCancelled\nHold\nReplied",
    "read_only": 1
   },
   {
@@ -46,7 +47,7 @@
   }
  ],
  "istable": 1,
- "modified": "2021-02-17 07:56:23.716447",
+ "modified": "2021-06-08 23:52:23.494052",
  "modified_by": "Administrator",
  "module": "Administrative Communication",
  "name": "Assignment Transaction Trace",

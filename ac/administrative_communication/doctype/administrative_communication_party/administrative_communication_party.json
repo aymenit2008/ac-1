@@ -132,11 +132,12 @@
   {
    "fieldname": "full_name",
    "fieldtype": "Data",
-   "label": "Full Name"
+   "label": "Full Name",
+   "reqd": 1
   }
  ],
  "is_tree": 1,
- "modified": "2021-02-11 19:05:30.855950",
+ "modified": "2021-06-08 23:23:20.675093",
  "modified_by": "Administrator",
  "module": "Administrative Communication",
  "name": "Administrative Communication Party",

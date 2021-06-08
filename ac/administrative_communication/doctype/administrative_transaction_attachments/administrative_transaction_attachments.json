@@ -6,6 +6,7 @@
  "field_order": [
   "attachment_type",
   "reference_type",
+  "attachment_count",
   "column_break_3",
   "reference_no",
   "reference_date",
@@ -16,7 +17,8 @@
    "fieldname": "attachment_type",
    "fieldtype": "Attach",
    "in_list_view": 1,
-   "label": "Attachment Type"
+   "label": "Attachment Type",
+   "reqd": 1
   },
   {
    "fieldname": "reference_type",
@@ -45,10 +47,18 @@
    "fieldname": "notes",
    "fieldtype": "Small Text",
    "label": "Notes"
+  },
+  {
+   "default": "1",
+   "fieldname": "attachment_count",
+   "fieldtype": "Int",
+   "in_list_view": 1,
+   "label": "Attachment Count",
+   "reqd": 1
   }
  ],
  "istable": 1,
- "modified": "2021-01-19 20:06:14.770104",
+ "modified": "2021-04-18 12:29:02.942328",
  "modified_by": "Administrator",
  "module": "Administrative Communication",
  "name": "Administrative Transaction Attachments",

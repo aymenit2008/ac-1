@@ -7,21 +7,33 @@ frappe.ui.form.on('Decisions And Generalizations', {
 	refresh: function(frm) {
 		if(frm.doc.docstatus==1){
 			frm.add_custom_button(
-				__('Note'),
+				__('نشر'),
+				function() {
+					return frappe.call({
+						doc: frm.doc,
+						method: 'notify_users',
+						callback: function(r) {
+						}
+					})
+				},
+				__('نشر')
+			);
+			frm.add_custom_button(
+				__('ملاحظة في النظام'),
 				function() {
 					frm.events.make_action(frm,"Note");
 				},
 				__('Make')
 			);
 			frm.add_custom_button(
-				__('Post'),
+				__('منشور داخلي'),
 				function() {
 					frm.events.make_action(frm,"Post");
 				},
 				__('Make')
 			);
 			frm.add_custom_button(
-				__('Event'),
+				__('حدث'),
 				function() {
 					frm.events.make_action(frm,"Event");
 				},

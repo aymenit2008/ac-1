@@ -35,8 +35,6 @@
   "posting_date",
   "exp_closing_date",
   "column_break_24",
-  "receive_date",
-  "closing_date",
   "reply_date",
   "assignment_transaction_cc_section",
   "assignment_transaction_cc",
@@ -60,34 +58,33 @@
    "fieldname": "administrative_transaction",
    "fieldtype": "Link",
    "in_list_view": 1,
-   "label": "\u0627\u0644\u0645\u0639\u0627\u0645\u0644\u0629",
+   "label": "Administrative Transaction",
    "options": "Administrative Transaction",
-   "read_only": 1,
-   "reqd": 1
+   "read_only": 1
   },
   {
    "fieldname": "assignment_transaction",
    "fieldtype": "Link",
-   "label": "\u0627\u0644\u0627\u062d\u0627\u0644\u0629 \u0627\u0644\u0633\u0627\u0628\u0642\u0629",
+   "label": "Assignment Transaction",
    "options": "Assignment Transaction",
    "read_only": 1
   },
   {
    "fieldname": "assignment_transaction_details",
    "fieldtype": "Section Break",
-   "label": "\u062a\u0641\u0627\u0635\u064a\u0644 \u0627\u0644\u0627\u062d\u0627\u0644\u0629"
+   "label": "Transaction Details"
   },
   {
    "fieldname": "assignment_transaction_action",
    "fieldtype": "Link",
-   "label": "\u0627\u0644\u0627\u062c\u0631\u0627\u0621",
+   "label": "Assignment Transaction Action",
    "options": "Assignment Transaction Action",
    "reqd": 1
   },
   {
    "fieldname": "assignment_description",
    "fieldtype": "Text Editor",
-   "label": "\u0627\u0644\u0634\u0631\u062d"
+   "label": "Description"
   },
   {
    "fieldname": "column_break_8",
@@ -97,20 +94,20 @@
    "allow_on_submit": 1,
    "fieldname": "assignment_description_result",
    "fieldtype": "Text Editor",
-   "label": "\u0645\u062d\u062a\u0648\u0649 \u0627\u0644\u0631\u062f \u0639\u0644\u0649 \u0627\u0644\u0627\u062d\u0627\u0644\u0629",
+   "label": "Replay Content",
    "no_copy": 1,
    "read_only": 1
   },
   {
    "fieldname": "assigned_to_section",
    "fieldtype": "Section Break",
-   "label": "\u0645\u062d\u0627\u0644\u0629 \u0645\u0646 / \u0627\u0644\u0649"
+   "label": "From / To"
   },
   {
    "fieldname": "assigned_to_type",
    "fieldtype": "Select",
    "ignore_user_permissions": 1,
-   "label": "\u0627\u062d\u0627\u0644\u0629 \u0627\u0644\u0649",
+   "label": "To Type",
    "options": "\nEmployee\nDepartment",
    "reqd": 1
   },
@@ -119,7 +116,7 @@
    "fieldname": "assigned_to_employee",
    "fieldtype": "Link",
    "ignore_user_permissions": 1,
-   "label": "\u0627\u0644\u0645\u0648\u0638\u0641 \u0627\u0644\u0645\u062d\u0627\u0644 \u0627\u0644\u064a\u0647",
+   "label": "To Empoyee",
    "options": "Employee",
    "reqd": 1
   },
@@ -128,36 +125,20 @@
    "fieldname": "assigned_to_department",
    "fieldtype": "Link",
    "ignore_user_permissions": 1,
-   "label": "\u0627\u0644\u062c\u0647\u0629 \u0627\u0644\u0645\u062d\u0627\u0644 \u0627\u0644\u064a\u0647\u0627",
+   "label": "To Department",
    "options": "Department"
-  },
-  {
-   "allow_on_submit": 1,
-   "fieldname": "closing_date",
-   "fieldtype": "Datetime",
-   "label": "\u062a\u0627\u0631\u064a\u062e \u0627\u063a\u0644\u0627\u0642 \u0627\u0644\u0627\u062d\u0627\u0644\u0629",
-   "no_copy": 1,
-   "read_only": 1
-  },
-  {
-   "allow_on_submit": 1,
-   "fieldname": "receive_date",
-   "fieldtype": "Datetime",
-   "label": "\u062a\u0627\u0631\u064a\u062e \u0627\u0633\u062a\u0644\u0627\u0645 \u0627\u0644\u0627\u062d\u0627\u0644\u0629",
-   "no_copy": 1,
-   "read_only": 1
   },
   {
    "collapsible": 1,
    "fieldname": "assigned_by_section",
    "fieldtype": "Section Break",
-   "label": "\u0627\u0644\u0628\u064a\u0627\u0646\u0627\u062a \u0627\u0644\u0632\u0645\u0646\u064a\u0629 \u0644\u0644\u0627\u062d\u0627\u0644\u0629"
+   "label": "Transaction Time Line"
   },
   {
    "fieldname": "assigned_by_employee",
    "fieldtype": "Link",
    "ignore_user_permissions": 1,
-   "label": "\u0627\u0644\u0645\u0648\u0638\u0641 \u0627\u0644\u0645\u062d\u064a\u0644",
+   "label": "From Employee",
    "options": "Employee",
    "permlevel": 1,
    "reqd": 1
@@ -167,7 +148,7 @@
    "fieldname": "assigned_by_department",
    "fieldtype": "Link",
    "ignore_user_permissions": 1,
-   "label": "\u0627\u0644\u062c\u0647\u0629 \u0627\u0644\u0645\u062d\u064a\u0644\u0629",
+   "label": "From Department",
    "options": "Department",
    "permlevel": 1,
    "read_only": 1
@@ -176,13 +157,13 @@
    "default": "0",
    "fieldname": "is_urgent",
    "fieldtype": "Check",
-   "label": "\u0627\u062d\u0627\u0644\u0629 \u0639\u0627\u062c\u0644\u0629"
+   "label": "Is Urgent"
   },
   {
    "default": "Today",
    "fieldname": "posting_date",
    "fieldtype": "Datetime",
-   "label": "\u062a\u0627\u0631\u064a\u062e \u0627\u0644\u0627\u062d\u0627\u0644\u0629",
+   "label": "Posting Date",
    "no_copy": 1,
    "read_only": 1
   },
@@ -190,24 +171,24 @@
    "collapsible": 1,
    "fieldname": "transporter_section",
    "fieldtype": "Section Break",
-   "label": "\u0645\u0646\u0627\u0648\u0644\u0629 \u0627\u0644\u0645\u0631\u0627\u0633\u0644"
+   "label": "Details Section"
   },
   {
    "fieldname": "transporter",
    "fieldtype": "Link",
-   "label": "\u0627\u0644\u0645\u0631\u0627\u0633\u0644",
+   "label": "Transporter",
    "options": "User"
   },
   {
    "collapsible": 1,
    "fieldname": "assignment_transaction_cc_section",
    "fieldtype": "Section Break",
-   "label": "\u0627\u0644\u062c\u0647\u0627\u062a \u0627\u0644\u0645\u062d\u0627\u0644 \u0627\u0644\u064a\u0647\u0627 \u0643\u0635\u0648\u0631\u0629"
+   "label": "Parties Carbon Copy Section"
   },
   {
    "fieldname": "assignment_transaction_cc",
    "fieldtype": "Table",
-   "label": "\u0627\u0644\u062c\u0647\u0627\u062a \u0627\u0644\u0645\u062d\u0627\u0644 \u0627\u0644\u064a\u0647\u0627 \u0643\u0635\u0648\u0631\u0629",
+   "label": "Parties Carbon Copy",
    "options": "Assignment Transaction CC"
   },
   {
@@ -220,9 +201,10 @@
    "read_only": 1
   },
   {
+   "depends_on": "administrative_transaction",
    "fieldname": "administrative_transaction_display",
    "fieldtype": "Button",
-   "label": "\u0639\u0631\u0636 \u0627\u0644\u062a\u0641\u0627\u0635\u064a\u0644"
+   "label": "More Details"
   },
   {
    "fieldname": "column_break_5",
@@ -233,7 +215,7 @@
    "depends_on": "assignment_transaction",
    "fieldname": "assignment_transaction_display",
    "fieldtype": "Button",
-   "label": "\u0639\u0631\u0636 \u0627\u0644\u062a\u0641\u0627\u0635\u064a\u0644"
+   "label": "More Details"
   },
   {
    "fieldname": "column_break_18",
@@ -246,38 +228,35 @@
   {
    "fieldname": "exp_closing_date",
    "fieldtype": "Datetime",
-   "label": "\u062a\u0627\u0631\u064a\u062e \u0627\u0644\u0627\u063a\u0644\u0627\u0642 \u0627\u0644\u0645\u062a\u0648\u0642\u0639",
+   "label": "Expected Closing Date",
    "no_copy": 1
   },
   {
    "fetch_from": "assigned_by_employee.user_id",
    "fieldname": "assigned_by_user",
    "fieldtype": "Link",
-   "label": "\u0627\u064a\u0645\u064a\u0644 \u0627\u0644\u0645\u0648\u0638\u0641 \u0627\u0644\u0645\u062d\u064a\u0644",
+   "label": "From Employee Email",
    "options": "User",
    "permlevel": 1,
-   "read_only": 1,
-   "reqd": 1
+   "read_only": 1
   },
   {
    "fetch_from": "assigned_to_employee.user_id",
    "fieldname": "assigned_to_user",
    "fieldtype": "Link",
-   "label": "\u0627\u064a\u0645\u064a\u0644 \u0627\u0644\u0645\u0648\u0638\u0641 \u0627\u0644\u0645\u062d\u0627\u0644 \u0627\u0644\u064a\u0647",
+   "label": "To Employee Email",
    "options": "User",
-   "read_only": 1,
-   "reqd": 1
+   "read_only": 1
   },
   {
    "allow_on_submit": 1,
-   "default": "Draft",
    "fieldname": "status",
    "fieldtype": "Select",
    "in_list_view": 1,
    "in_standard_filter": 1,
-   "label": "\u062d\u0627\u0644\u0629 \u0627\u0644\u0627\u062d\u0627\u0644\u0629",
+   "label": "Status",
    "no_copy": 1,
-   "options": "\nDraft\nOpen\nReceived\nCompleted\nCancelled\nHold\nRejected\nAssigned\nReplied\nOverdue",
+   "options": "\nDraft\nOpen\nReceived\nCompleted\nCancelled\nHold\nReplied",
    "read_only": 1
   },
   {
@@ -285,7 +264,7 @@
    "fieldname": "is_archived",
    "fieldtype": "Check",
    "hidden": 1,
-   "label": "\u0645\u0624\u0631\u0634\u0641\u0629",
+   "label": "Is Archived",
    "read_only": 1
   },
   {
@@ -300,7 +279,7 @@
    "allow_on_submit": 1,
    "fieldname": "reply_date",
    "fieldtype": "Datetime",
-   "label": "\u062a\u0627\u0631\u064a\u062e \u0627\u0644\u0631\u062f",
+   "label": "Replay Date",
    "no_copy": 1,
    "read_only": 1
   },
@@ -309,7 +288,7 @@
    "fieldname": "assigned_by_employee_name",
    "fieldtype": "Data",
    "in_list_view": 1,
-   "label": " \u0627\u0633\u0645 \u0627\u0644\u0645\u0648\u0638\u0641 \u0627\u0644\u0645\u062d\u064a\u0644",
+   "label": "From Employee Name",
    "read_only": 1
   },
   {
@@ -317,7 +296,7 @@
    "fieldname": "assigned_to_employee_name",
    "fieldtype": "Data",
    "in_list_view": 1,
-   "label": "\u0627\u0633\u0645 \u0627\u0644\u0645\u0648\u0638\u0641 \u0627\u0644\u0645\u062d\u0627\u0644 \u0627\u0644\u064a\u0647",
+   "label": "To Employee Name",
    "read_only": 1
   },
   {
@@ -325,7 +304,7 @@
    "fieldname": "title",
    "fieldtype": "Data",
    "hidden": 1,
-   "label": "\u0627\u0644\u0639\u0646\u0648\u0627\u0646",
+   "label": "Subject",
    "no_copy": 1,
    "print_hide": 1
   },
@@ -344,7 +323,7 @@
   }
  ],
  "is_submittable": 1,
- "modified": "2021-04-03 12:41:48.796218",
+ "modified": "2021-06-08 23:59:51.812641",
  "modified_by": "Administrator",
  "module": "Administrative Communication",
  "name": "Assignment Transaction",

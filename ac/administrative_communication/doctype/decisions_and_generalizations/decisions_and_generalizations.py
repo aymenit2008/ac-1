@@ -8,9 +8,20 @@ import frappe
 from frappe import _, scrub, ValidationError
 from frappe.model.document import Document
 from frappe.utils import flt, comma_or, nowdate, getdate, now
+from frappe.desk.doctype.notification_log.notification_log import enqueue_create_notification,\
+	get_title, get_title_html
 
 class DecisionsAndGeneralizations(Document):
-	pass
+	def notify_users(self):
+		from frappe.share import add
+		if self.public:
+			add(self.doctype, self.name, read=1, write=0, share=0, everyone=1,notify=1)			
+		elif self.assignment_transaction_cc:
+			for atc in self.assignment_transaction_cc:
+				add(self.doctype, self.name, user=atc.employee_email, read=1, write=0, share=0, everyone=0,notify=1)
+	
+	def on_submit(self):
+		self.notify_users()
 
 @frappe.whitelist()
 def make_action(dt,dn):

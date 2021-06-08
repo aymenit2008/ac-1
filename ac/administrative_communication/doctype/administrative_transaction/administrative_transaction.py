@@ -12,15 +12,29 @@ class AdministrativeTransaction(Document):
 	def validate(self):
 		##frappe.msgprint('on valide AdministrativeTransaction')
 		self.set_status()
+		if self.ac_attachments:
+			self.attachments_count=0
+			for att in self.ac_attachments:
+				self.attachments_count+=att.attachment_count
+		if not self.is_new() and self.source=='Out':
+			from frappe.share import add
+			if self.small_user_signature and self.small_user_signature!=frappe.session.user:
+				add(self.doctype, self.name, user=self.small_user_signature, read=1, write=1, share=1, everyone=0,notify=1)
+			if self.user_signature and self.user_signature!=frappe.session.user:
+				add(self.doctype, self.name, user=self.user_signature, read=1, write=1, share=1, everyone=0,notify=1)
 
 	def before_cancel(self):
 		self.set_status()
 
+	def on_cancel(self):
+		self.db_set('status', 'Cancelled', update_modified = True)
+		
 	def before_submit(self):
 		self.set_status(update=True,status='Open')
 		#self.posting_date=now()
 
 	def set_status(self, update=False, status=None, update_modified=True):
+		self.flags.ignore_permissions = 1
 		if self.is_new():
 			self.status = 'Draft'
 			self.db_set('posting_date', now())
@@ -44,6 +58,9 @@ class AdministrativeTransaction(Document):
 				self.db_set('status', status, update_modified = update_modified)
 				self.db_set('closing_date', now(), update_modified = update_modified)
 				return
+			elif status=='Cancelled':
+				self.db_set('status', status, update_modified = update_modified)
+				return
 			else:
 				self.db_set('status', status, update_modified = update_modified)				
 				return
@@ -65,7 +82,6 @@ def get_administrative_transaction(dt, dn):
 	doc = frappe.get_doc(dt, dn)
 	at = frappe.new_doc("Administrative Transaction")
 	at.source='صادر'
-	at.type='خارجي'
 	if dt in ("Assignment Transaction"):
 		doc_ac = frappe.get_doc("Assignment Transaction", dn)
 		
