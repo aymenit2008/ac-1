@@ -1,2 +1,181 @@
 apps/ac/ac/config/desktop.py,Administrative Communication,الاتصالات الادارية
-DocType: Administrative Transaction,Attachment Type,نوع المرفق
+DocType: Administrative Transaction,المعاملة الادارية
+DocType: Administrative Transaction,Draft,مسودة
+DocType: Administrative Transaction,Open,مفتوحة
+DocType: Administrative Transaction,Assigned,محالة
+DocType: Administrative Transaction,Received,مستلمة
+DocType: Administrative Transaction,Cancelled,ملغية
+DocType: Administrative Transaction,Sent,مرسلة
+DocType: Administrative Transaction,Completed,مكتملة
+DocType: Administrative Transaction,Pending,معلقة
+DocType: Administrative Transaction,Source,نوع المعاملة
+DocType: Administrative Transaction,Type,نوع الصادر
+DocType: Administrative Transaction,Subject,موضوع المعاملة
+DocType: Administrative Transaction,Transaction Date,تاريخ المعاملة
+DocType: Administrative Transaction,Category,تصنيف المعاملة
+DocType: Administrative Transaction,Priority,اهمية المعاملة
+DocType: Administrative Transaction,Original Type,طبيعة اصل المعاملة
+DocType: Administrative Transaction,Security Level,سرية المعاملة
+DocType: Administrative Transaction,Content Details,محتوى المعاملة
+DocType: Administrative Transaction,Letter Template,قالب الخطاب
+DocType: Administrative Transaction,Content,نص المعاملة
+DocType: Administrative Transaction,Transaction Details,التفاصيل
+DocType: Administrative Transaction,Party Type,نوع الجهة
+DocType: Administrative Transaction,Party,الجهة
+DocType: Administrative Transaction,Party Name,اسم الجهة
+DocType: Administrative Transaction,Inbox No,الرقم
+DocType: Administrative Transaction,Inbox Type,النوع
+DocType: Administrative Transaction,Inbox Date,تاريخ الوثيقة
+DocType: Administrative Transaction,Inbox Delivery Date,تاريخ الاستلام
+DocType: Administrative Transaction,Inbox Contact,جهة الاتصال
+DocType: Administrative Transaction,Inbox Contact Name,اسم جهة الاتصال
+DocType: Administrative Transaction,Inbox Contact Email,ايميل جهة الاتصال
+DocType: Administrative Transaction,Inbox Contact Mobile No,تلفون جهة الاتصال
+DocType: Administrative Transaction,Parties Section,الاطراف المرتبطة بالمعاملة
+DocType: Administrative Transaction,Parties,الاطراف المرتبطة
+DocType: Administrative Transaction,Attachments Section,مرفقات المعاملة
+DocType: Administrative Transaction,Attachments,المرفقات
+DocType: Administrative Transaction,Links Sections,المعاملات المرتبطة بالمعاملة
+DocType: Administrative Transaction,Links,المعاملات المرتبطة
+DocType: Administrative Transaction,More Details,تفاصيل أخرى 
+DocType: Administrative Transaction,Status,حالة المعاملة
+DocType: Administrative Transaction,Notes,ملاحظات
+DocType: Administrative Transaction,Posting Date,تاريخ البدء
+DocType: Administrative Transaction,Assignment Date,تاريخ الاحالة
+DocType: Administrative Transaction,Closing Date,تاريخ الاغلاق
+DocType: Administrative Transaction,Company,اسم الشركة
+DocType: Administrative Transaction,Small User Signature,تأشيرة
+DocType: Administrative Transaction,User Signature,اعتماد وتوقيع
+DocType: Administrative Transaction,Assignment Transaction,الاحالة الادارية
+DocType: Assignment Transaction,الاحالة الادارية
+DocType: Assignment Transaction,Subject,العنوان
+DocType: Assignment Transaction,Administrative Transactionالمعاملة المرتبطة
+DocType: Assignment Transaction,More Details ,عرض التفاصيل
+DocType: Assignment Transaction,Assignment Transaction,الاحالة السابقة
+DocType: Assignment Transaction,download_attachments,تنزيل المرفقات
+DocType: Assignment Transaction,More Details,عرض التفاصيل
+DocType: Assignment Transaction,Transaction Details,تفاصيل الاحالة
+DocType: Assignment Transaction,Assignment Transaction Action,الاجراء
+DocType: Assignment Transaction,Transaction Details, تفاصيل الاحالة
+DocType: Assignment Transaction,Description,الوصف
+DocType: Assignment Transaction,Status,حالة الاحالة
+DocType: Assignment Transaction,Replay Content,محتوى الرد على الاحالة
+DocType: Assignment Transaction,From / To,محالة من / الى
+DocType: Assignment Transaction,From Department,الجهة المحيلة
+DocType: Assignment Transaction,From Employee,الموظف المحيل
+DocType: Assignment Transaction,From Employee Name, اسم الموظف المحيل
+DocType: Assignment Transaction,From Employee Email,ايميل الموظف المحيل
+DocType: Assignment Transaction,Is Urgent,احالة عاجلة
+DocType: Assignment Transaction,To Type,احالة الى
+DocType: Assignment Transaction,To Department,الجهة المحال اليها
+DocType: Assignment Transaction,To Empoyee,الموظف المحال اليه
+DocType: Assignment Transaction,To Employee Name,اسم الموظف المحال اليه
+DocType: Assignment Transaction,To Employee Email,ايميل الموظف المحال اليه
+DocType: Assignment Transaction,Transaction Time Line,البيانات الزمنية للاحالة
+DocType: Assignment Transaction,Posting Date,تاريخ الاحالة
+DocType: Assignment Transaction,Expected Closing Date,تاريخ الاغلاق المتوقع
+DocType: Assignment Transaction,Replay Date,تاريخ الرد
+DocType: Assignment Transaction,Receive Date,تاريخ الرد
+DocType: Assignment Transaction,Closing Date,تاريخ اغلاق الاحالة
+DocType: Assignment Transaction,Parties Carbon Copy Section,الجهات المحال اليها كصورة
+DocType: Assignment Transaction,Parties Carbon Copy,الجهات المحال اليها كصورة
+DocType: Assignment Transaction,Details Section,مناولة المراسل
+DocType: Assignment Transaction,Transporter,المراسل
+DocType: Assignment Transaction,Is Archived,مؤرشفة
+DocType: Assignment Transaction,Company,الشركة 
+DocType: Assignment Transaction,Assignment Transaction Trace Section,قسم تتبع الاحالة الادارية
+DocType: Assignment Transaction,Assignment Transaction Trace, تتبع الاحالة الادارية
+DocType: Assignment Transaction Trace,Status,الحالة
+DocType: Assignment Transaction Trace,User,المستخدم
+DocType: Assignment Transaction Trace,User Name,اسم المستخدم
+DocType: Assignment Transaction Trace,Date,التاريخ
+DocType: Decisions And Generalizations,القرارات و التعميمات
+DocType: Decisions And Generalizations,Subject,العنوان
+DocType: Decisions And Generalizations,Type,نوع التعميم او القرار
+DocType: Decisions And Generalizations,From Date,من تاريخ
+DocType: Decisions And Generalizations,To Date,الى تاريخ
+DocType: Decisions And Generalizations,For Ever,الى الابد
+DocType: Decisions And Generalizations,Status, حالة  التعميم او القرار
+DocType: Decisions And Generalizations,From,صادر من
+DocType: Decisions And Generalizations,Administrative Transaction,المعاملة الادارية
+DocType: Decisions And Generalizations,For All,للجميع
+DocType: Decisions And Generalizations,Send Email,اشعار المعنيين بايميل
+DocType: Decisions And Generalizations,Letter Template,قالب القرار
+DocType: Decisions And Generalizations,Content,المحتوى
+DocType: Decisions And Generalizations,Participants,المعنيين بالتعميم
+DocType: Decisions And Generalizations Owners,مالك القرار او التعميم
+DocType: Decisions And Generalizations Owners,Employee,الموظف
+DocType: Decisions And Generalizations Owners,Employee Name,اسم الموظف
+DocType: Decisions And Generalizations Owners,Designation,التعيين الوظيفي
+DocType: Decisions And Generalizations Owners,User,المستخدمين
+DocType: Administrative Communication Party,أطراف الاتصالات الادارية 
+DocType: Administrative Communication Party,Party Name,اسم الطرف
+DocType: Administrative Communication Party,Full Name,الاسم الكامل
+DocType: Administrative Communication Party,Left,يسار
+DocType: Administrative Communication Party,Right,يمين
+DocType: Administrative Communication Party,Is Group,للجميع
+DocType: Administrative Communication Party,Old Parent,الطرف الاب السابق
+DocType: Administrative Communication Party,Parent Administrative Communication Party, طرف اتصالات ادارية سابق
+DocType: Administrative Communication Party,Address and Contact,جهة الاتصال والموضوع
+DocType: Administrative Communication Party,Contact HTML
+DocType: Administrative Communication Party,Address HTML
+DocType: Administrative Communication Party,Primary Address and Contact Detail,العنوان وتفاصيل الاتصال
+DocType: Administrative Communication Party,Primary Contact,جهة الاتصال
+DocType: Administrative Communication Party,Mobile No,رقم الهاتف
+DocType: Administrative Communication Party,Email Id,الايميل
+DocType: Administrative Communication Party,Primary Address,العنوان
+DocType: Administrative Communication Party,Primary Addres,العنوان
+DocType: Administrative Communication Settings,اعدادات الاتصالات الادارية
+DocType: Administrative Communication Settings,Default Assignment Closing Expected Days,الأيام المتوقعة لإغلاق المهمة الافتراضية
+DocType: Administrative Communication Settings,Role Allowed to Set Status,الدور المسموح به لتعيين الحالة
+DocType: Administrative Communication Settings,Decisions Notification Template,نموذج اشعار القرارات
+DocType: Administrative Transaction Category,اصناف المعاملة
+DocType: Administrative Transaction Category,Category,تصنيف المعاملة
+DocType: Assignment Transaction Action,اجراء الاحالة الادارية
+DocType: Assignment Transaction Action,Action,اجراءالاحالة
+DocType: Letter Template,قالب المعاملة
+DocType: Letter Template,Title,عنوان القالب
+DocType: Letter Template,Disabled,معطل
+DocType: Letter Template,Reference File,الملف المرجعي
+DocType: Letter Template,Content,المحتوى
+DocType: Assignment Transaction CC,الجهات المحال اليها كصورة
+DocType: Assignment Transaction CC,Department,القسم
+DocType: Assignment Transaction CC,Type,النوع
+DocType: Assignment Transaction CC,Manager,مدير
+DocType: Assignment Transaction CC,Specific,مخصص
+DocType: Assignment Transaction CC,All,الكل
+DocType: Assignment Transaction CC,Employee,الموظف
+DocType: Assignment Transaction CC,Employee Email,ايميل الموظف
+DocType: Administrative Transaction Links,المعاملات المرتبطة
+DocType: Administrative Transaction Links,Administrative Transaction,المعاملة الادارية
+DocType: Administrative Transaction Links,Subject,الموضوع
+DocType: Administrative Transaction Attachments,مرفقات المعاملة الادارية
+DocType: Administrative Transaction Attachments,Attachment Type,نوع المرفق
+DocType: Administrative Transaction Attachments,Reference Type,نوع المرجع
+DocType: Administrative Transaction Attachments,Reference No,رقم المرجع
+DocType: Administrative Transaction Attachments,Reference Date,تاريخ المرجع
+DocType: Administrative Transaction Attachments,Notes,ملاحظات
+DocType: Administrative Transaction Parties,الأطراف المرتبطة
+DocType: Administrative Transaction Parties,Party Type,نوع الطرف
+DocType: Administrative Transaction Parties,Party,الطرف
+DocType: Administrative Transaction Parties,Party Name,اسم الطرف
+DocType: Administrative Transaction Parties,Customer,العميل
+DocType: Administrative Transaction Parties,Supplier,المورد
+DocType: Administrative Transaction Parties,Employee,الموظف
+DocType: Decisions And Generalizations Owners,مالك القرار او التعميم
+DocType: Decisions And Generalizations Owners,Employee,الموظف
+DocType: Decisions And Generalizations Owners,Employee Name,اسم الموظف
+DocType: Decisions And Generalizations Owners,Designation,التعيين الوظيفي
+DocType: Decisions And Generalizations Owners,User,المستخدم
+DocType: Assignment Transaction Trace,تتبع الاحالة الادارية
+DocType: Assignment Transaction Trace,Status,الحالة
+DocType: Assignment Transaction Trace,User,المستخدم
+DocType: Assignment Transaction Trace,User Name,اسم المستخدم
+DocType: Assignment Transaction Trace,Date,التاريخ
+DocType: Administrative Transaction Type,نوع الصادر
+DocType: Administrative Transaction Type,Type,نوع الصادر
+DocType: Administrative Transaction Source,نوع المعاملة الادراية
+DocType: Administrative Transaction Source,Source,نوع المعاملة
+
+
+

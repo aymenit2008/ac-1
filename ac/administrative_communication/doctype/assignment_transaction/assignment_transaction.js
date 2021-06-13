@@ -273,7 +273,7 @@ frappe.ui.form.on('Assignment Transaction', {
 	validate_assignment_description: function (frm) {
 		if(frm.doc.status == 'Draft'){
 		};
-		if (frm.doc.__islocal) {
+		if (frm.doc) {
 			frm.set_df_property('assignment_description_result', 'hidden', 1);
 			frm.set_df_property('assignment_description_result', 'read_only', 1);
 		} else {			
