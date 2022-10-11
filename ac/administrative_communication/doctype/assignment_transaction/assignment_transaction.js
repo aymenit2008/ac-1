@@ -274,8 +274,8 @@ frappe.ui.form.on('Assignment Transaction', {
 		if(frm.doc.status == 'Draft'){
 		};
 		if (frm.doc) {
-			frm.set_df_property('assignment_description_result', 'hidden', 1);
-			frm.set_df_property('assignment_description_result', 'read_only', 1);
+			//frm.set_df_property('assignment_description_result', 'hidden', 1);
+			//frm.set_df_property('assignment_description_result', 'read_only', 1);
 		} else {			
 			if (frm.doc.status == 'Received') {
 				frm.set_df_property('assignment_description_result', 'hidden', 0);

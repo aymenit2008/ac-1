@@ -36,9 +36,9 @@ def get_data(filters, conditions):
 			ast.assigned_by_department,
 			ast.assigned_to_department,
 			ast.posting_date,
-			ast.receive_date,
-			ast.closing_date,						
-			DATEDIFF(IFNULL(ast.closing_date,NOW()), ast.posting_date) AS lating_days,
+			ast.posting_date receive_date,
+			ast.posting_date closing_date,						
+			DATEDIFF(IFNULL(ast.posting_date,NOW()), ast.posting_date) AS lating_days,
 			ast.assignment_transaction
 		FROM
 			`tabAssignment Transaction` ast	
