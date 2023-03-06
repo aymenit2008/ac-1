@@ -1,0 +1,50 @@
+{
+ "charts": [],
+ "content": "[{\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\">\u0646\u0638\u0627\u0645 \u0625\u062f\u0627\u0631\u0629 \u0627\u0644\u0645\u0631\u0633\u0644\u0627\u062a</span>\",\"col\":12}},{\"type\":\"card\",\"data\":{\"card_name\":\"\u0627\u0644\u0639\u0645\u0644\u064a\u0627\u062a \u0627\u0644\u0631\u0626\u064a\u0633\u064a\u0629\",\"col\":4}},{\"type\":\"spacer\",\"data\":{\"col\":12}},{\"type\":\"quick_list\",\"data\":{\"quick_list_name\":\"Administrative Transaction\",\"col\":6}}]",
+ "creation": "2022-10-11 22:40:55.379821",
+ "docstatus": 0,
+ "doctype": "Workspace",
+ "for_user": "",
+ "hide_custom": 0,
+ "icon": "branch",
+ "idx": 0,
+ "label": "\u0646\u0638\u0627\u0645 \u0625\u062f\u0627\u0631\u0629 \u0627\u0644\u0645\u0631\u0633\u0644\u0627\u062a",
+ "links": [
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "\u0627\u0644\u0639\u0645\u0644\u064a\u0627\u062a \u0627\u0644\u0631\u0626\u064a\u0633\u064a\u0629",
+   "link_count": 1,
+   "onboard": 0,
+   "type": "Card Break"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Administrative Transaction",
+   "link_count": 0,
+   "link_to": "Administrative Transaction",
+   "link_type": "DocType",
+   "onboard": 1,
+   "type": "Link"
+  }
+ ],
+ "modified": "2022-10-11 23:38:27.668268",
+ "modified_by": "Administrator",
+ "module": "Administrative Communication",
+ "name": "\u0646\u0638\u0627\u0645 \u0625\u062f\u0627\u0631\u0629 \u0627\u0644\u0645\u0631\u0633\u0644\u0627\u062a",
+ "owner": "Administrator",
+ "parent_page": "",
+ "public": 1,
+ "quick_lists": [
+  {
+   "document_type": "Administrative Transaction",
+   "label": "Administrative Transaction"
+  }
+ ],
+ "restrict_to_domain": "ac_ypc",
+ "roles": [],
+ "sequence_id": 1.0,
+ "shortcuts": [],
+ "title": "\u0646\u0638\u0627\u0645 \u0625\u062f\u0627\u0631\u0629 \u0627\u0644\u0645\u0631\u0633\u0644\u0627\u062a"
+}

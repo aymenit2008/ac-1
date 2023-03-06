@@ -1,4 +1,5 @@
 {
+ "actions": [],
  "autoname": "naming_series:",
  "creation": "2020-12-26 18:50:41.924959",
  "doctype": "DocType",
@@ -98,6 +99,7 @@
   {
    "fieldname": "category",
    "fieldtype": "Link",
+   "hidden": 1,
    "in_list_view": 1,
    "label": "Category",
    "options": "Administrative Transaction Category"
@@ -105,18 +107,21 @@
   {
    "fieldname": "priority",
    "fieldtype": "Select",
+   "hidden": 1,
    "label": "Priority",
    "options": "\nNormal\nImportant\nUrgent\nImportant and Urgent"
   },
   {
    "fieldname": "orginal_type",
    "fieldtype": "Select",
+   "hidden": 1,
    "label": "Original Type",
    "options": "\nCircumstance\nKick\nSheet\nOrigin\nPicture"
   },
   {
    "fieldname": "secret_level",
    "fieldtype": "Select",
+   "hidden": 1,
    "label": "Security Level",
    "options": "\nNormal\nSecret\nExtremely Confidential"
   },
@@ -192,12 +197,12 @@
   {
    "fieldname": "ac_parties_section",
    "fieldtype": "Section Break",
-   "label": "Parties Section"
+   "label": "\u0627\u0644\u0627\u0637\u0631\u0627\u0641 \u0627\u0644\u0645\u0639\u0646\u064a\u0629"
   },
   {
    "fieldname": "ac_parties_",
    "fieldtype": "Table",
-   "label": "Parties",
+   "label": "\u0627\u0644\u0627\u0637\u0631\u0627\u0641",
    "options": "Administrative Transaction Parties"
   },
   {
@@ -205,19 +210,19 @@
    "collapsible_depends_on": "eval:!doc.__islocal",
    "fieldname": "ac_attachments_section",
    "fieldtype": "Section Break",
-   "label": "Attachments Section"
+   "label": "\u0642\u0627\u0626\u0645\u0629 \u0627\u0644\u0645\u0631\u0641\u0642\u0627\u062a"
   },
   {
    "allow_on_submit": 1,
    "fieldname": "ac_attachments",
    "fieldtype": "Table",
-   "label": "Attachments",
+   "label": "\u0627\u0644\u0645\u0631\u0641\u0642\u0627\u062a",
    "options": "Administrative Transaction Attachments"
   },
   {
    "fieldname": "ac_links_section",
    "fieldtype": "Section Break",
-   "label": "Links Sections"
+   "label": "\u0627\u0644\u0645\u0639\u0627\u0645\u0644\u0627\u062a \u0627\u0644\u0645\u0631\u062a\u0628\u0637\u0629"
   },
   {
    "fieldname": "ac_links",
@@ -320,24 +325,28 @@
   {
    "fieldname": "small_user_signature",
    "fieldtype": "Link",
-   "label": "Small User Signature",
+   "label": "\u0627\u0644\u0645\u0648\u0638\u0641 \u0627\u0644\u0645\u062e\u062a\u0635",
    "options": "User"
   },
   {
    "fieldname": "user_signature",
    "fieldtype": "Link",
-   "label": "User Signature",
+   "label": "\u0627\u0644\u0645\u0648\u0638\u0641 \u0627\u0644\u0645\u0633\u0624\u0648\u0644",
    "options": "User"
   }
  ],
  "is_submittable": 1,
- "modified": "2021-06-09 00:25:32.316112",
+ "links": [],
+ "modified": "2022-10-11 22:37:23.469221",
  "modified_by": "Administrator",
  "module": "Administrative Communication",
  "name": "Administrative Transaction",
+ "naming_rule": "By \"Naming Series\" field",
  "owner": "Administrator",
  "permissions": [
   {
+   "amend": 1,
+   "cancel": 1,
    "create": 1,
    "delete": 1,
    "email": 1,
@@ -346,7 +355,10 @@
    "read": 1,
    "report": 1,
    "role": "System Manager",
+   "select": 1,
+   "set_user_permissions": 1,
    "share": 1,
+   "submit": 1,
    "write": 1
   },
   {
@@ -381,6 +393,7 @@
  "show_preview_popup": 1,
  "sort_field": "modified",
  "sort_order": "DESC",
+ "states": [],
  "title_field": "subject",
  "track_changes": 1,
  "track_seen": 1

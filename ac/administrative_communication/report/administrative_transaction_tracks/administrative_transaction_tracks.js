@@ -21,8 +21,11 @@ frappe.query_reports["Administrative Transaction Tracks"] = {
 		else if (data.status == 'Open') {
 			value = `<div style="color:darkorange">${value}</div>`;
 		}
-		else if (data.status == 'Pending') {
+		else if (data.status == 'Received') {
 			value = `<div style="color:blue">${value}</div>`;
+		}
+		else if (data.status == 'Hold') {
+			value = `<div style="color:black">${value}</div>`;
 		}
 		else if (data.status == 'Completed') {
 			value = `<div style="color:green">${value}</div>`;
